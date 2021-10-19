@@ -1,0 +1,90 @@
+tap "buildpacks/tap"
+tap "git-time-metric/gtm"
+tap "github/gh"
+tap "heroku/brew"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "jesseduffield/lazydocker"
+
+if OS.mac?
+    # taps
+
+    tap "homebrew/cask-fonts"
+
+    brew "mas"
+
+    brew "trash"
+
+    # Applications
+    cask "iterm2"
+    cask "visual-studio-code"
+    cask "imageoptim"
+    cask "docker"
+
+    cask "istat-menus"
+
+    cask "cleanshot"
+
+    cask "loopback"
+
+    cask "postman"
+
+    # Browsers
+    cask "firefox"
+
+    # Fonts
+    cask "font-fira-code"
+    cask "font-jetbrains-mono"
+    cask "font-cascadia-mono"
+    cask "font-3270-nerd-font"
+
+    # # macOS App Store
+    # mas "Affinity Designer", id: 824171161
+
+    # mas "Airmail", id: 918858936
+
+    # mas "Xcode", id: 497799835
+
+    # mas "Magnet", id: 441258766
+
+elsif OS.linux?
+    brew "xclip"
+end
+brew "sqlite"
+brew "python"
+
+brew "contentful-cli"
+brew "direnv"
+brew "ffmpeg"
+brew "flow"
+brew "gnu-tar"
+brew "go"
+brew "git-lfs"
+brew "graphicsmagick"
+brew "graphviz"
+brew "htop"
+brew "imagemagick"
+brew "libdvdcss"
+brew "mutagen"
+brew "mackup"
+brew "magic-wormhole"
+brew "pandoc"
+brew "pow"
+brew "pnpm"
+brew "rbenv"
+brew "terminal-notifier"
+brew "terraform"
+brew "tidy-html5"
+brew "tmux"
+brew "tree"
+brew "unrar"
+brew "watch"
+brew "watchman"
+brew "yarn"
+brew "buildpacks/tap/pack"
+brew "git-time-metric/gtm/gtm"
+brew "github/gh/gh"
+brew "heroku/brew/heroku"
+brew "cocoapods"

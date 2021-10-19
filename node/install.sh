@@ -1,7 +1,3 @@
-if test ! $(which spoof)
-then
-  if test $(which npm)
-  then
-    sudo npm install spoof -g
-  fi
-fi
+# Install NVM
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
