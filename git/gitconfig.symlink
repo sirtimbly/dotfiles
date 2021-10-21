@@ -4,9 +4,9 @@
 
 [alias]
         co = checkout
-        promote = !$ZSH/bin/git-promote
-        wtf     = !$ZSH/bin/git-wtf
-        rank-contributors = !$ZSH/bin/git-rank-contributors
+        promote = !$DOTFILES/bin/git-promote
+        wtf     = !$DOTFILES/bin/git-wtf
+        rank-contributors = !$DOTFILES/bin/git-rank-contributors
         count   = !git shortlog -sn
         lg = !"git lg1"
         lg1 = !"git lg1-specific --all"
@@ -16,25 +16,45 @@
         lg1-specific = log --graph --simplify-by-decoration --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset)%C(auto)%d%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
         lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
         lg3-specific = log --graph --simplify-by-decoration --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
+
+        reb           = rebase
+        rebabort      = rebase --abort
+        rebcont       = rebase --continue
+        rebi          = rebase -i
+        rebim         = rebase -i master
+        rebm          = rebase master
+        rebo          = rebase -i --onto
+        rebskip       = rebase --skip
+        pf	      = push --force-with-lease
 [color]
         diff = auto
         status = auto
         branch = auto
         ui = true
 [core]
-        excludesfile = ~/.gitignore
-        editor = code
-
+        editor = code --wait
+[merge]
+        tool = vscode
+[mergetool "vscode"]
+        cmd = code --wait $MERGED
 [mergetool]
         keepBackup = false
+[diff]
+        tool = vscode
+[difftool "vscode"]
+        cmd = code --wait --diff $LOCAL $REMOTE
 [difftool]
         prompt = false
 [help]
         autocorrect = 1
 [push]
 	default = current
-[user]
-	name = Tim Bendt
-	email = sirtimbly@gmail.com
 [url "https://"]
 	insteadOf = git://
+[heroku]
+	account = personal
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

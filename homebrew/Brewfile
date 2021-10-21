@@ -7,6 +7,7 @@ tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "jesseduffield/lazydocker"
+# tap "mutagen-io/mutagen/mutagen"
 
 if OS.mac?
     # taps
@@ -14,7 +15,7 @@ if OS.mac?
     tap "homebrew/cask-fonts"
 
     brew "mas"
-
+    brew "cocoapods"
     brew "trash"
 
     # Applications
@@ -22,13 +23,12 @@ if OS.mac?
     cask "visual-studio-code"
     cask "imageoptim"
     cask "docker"
-
-    cask "istat-menus"
-
+    # cask "istat-menus"
     cask "cleanshot"
-
+    cask "colorsnapper"
+    cask "dropshare"
     cask "loopback"
-
+    cask "vanilla"
     cask "postman"
 
     # Browsers
@@ -39,6 +39,7 @@ if OS.mac?
     cask "font-jetbrains-mono"
     cask "font-cascadia-mono"
     cask "font-3270-nerd-font"
+    cask "font-meslo-for-powerline"
 
     # # macOS App Store
     # mas "Affinity Designer", id: 824171161
@@ -54,7 +55,9 @@ elsif OS.linux?
 end
 brew "sqlite"
 brew "python"
-
+brew "python@3"
+brew "awscli"
+brew "pipx"
 brew "contentful-cli"
 brew "direnv"
 brew "ffmpeg"
@@ -67,7 +70,7 @@ brew "graphviz"
 brew "htop"
 brew "imagemagick"
 brew "libdvdcss"
-brew "mutagen"
+# brew "mutagen"
 brew "mackup"
 brew "magic-wormhole"
 brew "pandoc"
@@ -79,12 +82,11 @@ brew "terraform"
 brew "tidy-html5"
 brew "tmux"
 brew "tree"
-brew "unrar"
 brew "watch"
 brew "watchman"
 brew "yarn"
 brew "buildpacks/tap/pack"
 brew "git-time-metric/gtm/gtm"
-brew "github/gh/gh"
+brew "gh"
 brew "heroku/brew/heroku"
-brew "cocoapods"
+
