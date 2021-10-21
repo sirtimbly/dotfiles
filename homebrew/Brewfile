@@ -17,12 +17,16 @@ if OS.mac?
     brew "mas"
     brew "cocoapods"
     brew "trash"
-
+    brew "coreutils"
     # Applications
+    cask "atext"
     cask "iterm2"
     cask "visual-studio-code"
     cask "imageoptim"
     cask "docker"
+    cask "dbeaver-community"
+    cask "hermes"
+    cask "fork"
     # cask "istat-menus"
     cask "cleanshot"
     cask "colorsnapper"
@@ -30,7 +34,7 @@ if OS.mac?
     cask "loopback"
     cask "vanilla"
     cask "postman"
-
+    cask "vlc"
     # Browsers
     cask "firefox"
 
@@ -70,6 +74,7 @@ brew "graphviz"
 brew "htop"
 brew "imagemagick"
 brew "libdvdcss"
+brew "loc"
 # brew "mutagen"
 brew "mackup"
 brew "magic-wormhole"
@@ -90,3 +95,4 @@ brew "git-time-metric/gtm/gtm"
 brew "gh"
 brew "heroku/brew/heroku"
 
+cask "sublime-text"
