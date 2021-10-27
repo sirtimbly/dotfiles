@@ -75,7 +75,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_THEME_RUBY_PROMPT_PREFIX="%{$fg_bold[red]%}‹"
 ZSH_THEME_RUBY_PROMPT_SUFFIX="›%{$reset_color%}"
 
-export PROMPT=$'%{$fg[red]%}┌─%{$fg[red]%}(%n@%m)[%{$reset_color%}$(directory_name)%{$fg[red]%}] ⌚ %{$fg_bold[magenta]%}%*%{$reset_color%}$(git_prompt_info)%{$reset_color%}\n%{$fg[red]%}└─➤%{$reset_color%} '
+export PROMPT=$'%{$fg[yellow]%}┌─%{$fg[yellow]%}(%n@%m)[%{$reset_color%}$(directory_name)%{$fg[yellow]%}] ⌚ %{$fg_bold[blue]%}%*%{$reset_color%}$(git_prompt_info)%{$reset_color%}\n%{$fg[yellow]%}└─➤%{$reset_color%} '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
