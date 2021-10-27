@@ -1,0 +1,8 @@
+[storage]
+engine = dropbox
+
+[applications_to_ignore]
+ssh
+vscode
+oh-my-zsh
+zsh
