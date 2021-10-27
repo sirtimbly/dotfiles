@@ -13,6 +13,7 @@ if OS.mac?
     # taps
 
     tap "homebrew/cask-fonts"
+    # tap "iandol/adobe-fonts/font-source-code-pro"
 
     brew "mas"
     brew "cocoapods"
@@ -41,6 +42,7 @@ if OS.mac?
 
     # Fonts
     cask "font-fira-code"
+    cask "iandol/adobe-fonts/font-source-code-pro"
     cask "font-jetbrains-mono"
     cask "font-cascadia-mono"
     cask "font-3270-nerd-font"
