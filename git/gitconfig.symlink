@@ -58,3 +58,6 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[user]
+	name = Tim Bendt
+	email = sirtimbly@gmail.com

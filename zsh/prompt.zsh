@@ -27,11 +27,11 @@ git_dirty() {
   fi
 }
 
-git_prompt_info () {
- ref=$($git symbolic-ref HEAD 2>/dev/null) || return
-# echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
- echo "${ref#refs/heads/}"
-}
+# git_prompt_info () {
+#  ref=$($git symbolic-ref HEAD 2>/dev/null) || return
+# # echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
+#  echo "${ref#refs/heads/}"
+# }
 
 # This assumes that you always have an origin named `origin`, and that you only
 # care about one specific origin. If this is not the case, you might want to use
@@ -65,8 +65,17 @@ battery_status() {
     $DOTFILES/bin/battery-status
   fi
 }
+# Must use Powerline font, for \uE0A0 to render.
+ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}\uE0A0 "
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}!"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-export PROMPT=$'\n▻ $(directory_name) ⌚ %{$fg_bold[magenta]%}%*%{$reset_color%} $(git_dirty)$(need_push)%{$reset_color%}\n$ '
+ZSH_THEME_RUBY_PROMPT_PREFIX="%{$fg_bold[red]%}‹"
+ZSH_THEME_RUBY_PROMPT_SUFFIX="›%{$reset_color%}"
+
+export PROMPT=$'%{$fg[red]%}┌─%{$fg[red]%}(%n@%m)[%{$reset_color%}$(directory_name)%{$fg[red]%}] ⌚ %{$fg_bold[magenta]%}%*%{$reset_color%}$(git_prompt_info)%{$reset_color%}\n%{$fg[red]%}└─➤%{$reset_color%} '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
