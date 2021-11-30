@@ -7,6 +7,7 @@ tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "jesseduffield/lazydocker"
+tap "jesseduffield/lazygit"
 # tap "mutagen-io/mutagen/mutagen"
 
 if OS.mac?
@@ -20,6 +21,8 @@ if OS.mac?
     brew "trash"
     brew "coreutils"
     # Applications
+    brew "lazydocker"
+    brew "lazygit"
     cask "atext"
     cask "iterm2"
     cask "karabiner-elements"
@@ -56,6 +59,11 @@ if OS.mac?
     # mas "Xcode", id: 497799835
 
     # mas "Magnet", id: 441258766
+
+    ## Qicklooks
+
+    cask "quicklook-json"
+    cask "qlmarkdown"
 
 elsif OS.linux?
     brew "xclip"
