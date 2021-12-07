@@ -1,8 +1,10 @@
 [storage]
-engine = dropbox
+engine = icloud
 
 [applications_to_ignore]
 ssh
 vscode
 oh-my-zsh
 zsh
+git
+vim
