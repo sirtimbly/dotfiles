@@ -4,3 +4,4 @@ alias cls='clear' # Good 'ol Clear Screen command
 alias y="yarn"
 alias g="git"
 alias mux="tmuxinator"
+alias lzg="lazygit"

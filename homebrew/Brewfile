@@ -16,7 +16,6 @@ if OS.mac?
     tap "homebrew/cask-fonts"
     # tap "iandol/adobe-fonts/font-source-code-pro"
 
-    brew "mas"
     brew "cocoapods"
     brew "trash"
     brew "coreutils"
@@ -52,6 +51,7 @@ if OS.mac?
     cask "font-meslo-for-powerline"
 
     # # macOS App Store
+    # brew "mas"
     # mas "Affinity Designer", id: 824171161
 
     # mas "Airmail", id: 918858936
@@ -62,8 +62,8 @@ if OS.mac?
 
     ## Qicklooks
 
-    cask "quicklook-json"
-    cask "qlmarkdown"
+    # cask "quicklook-json"
+    # cask "qlmarkdown"
 
 elsif OS.linux?
     brew "xclip"
@@ -108,3 +108,4 @@ brew "gh"
 brew "heroku/brew/heroku"
 
 cask "sublime-text"
+cask "meld"
