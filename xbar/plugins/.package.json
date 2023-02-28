@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@sindresorhus/xbar": "^2.1.0",
+    "date-fns": "^2.29.3"
+  }
+}
