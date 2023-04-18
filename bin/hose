@@ -1,0 +1,7 @@
+#!/bin/sh
+rm -rf node_modules \
+       yarn.lock \
+       package-lock.json \
+       && \
+npx clear-npx-cache && \
+npx jest --clearCache

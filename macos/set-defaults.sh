@@ -54,8 +54,8 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
 # Sleep the display after 15 minutes
-sudo pmset -a displaysleep 15
+# sudo pmset -a displaysleep 15
 
-sudo pmset -a sleep 90
+# sudo pmset -a sleep 90
 # Set machine sleep to 5 minutes on battery
-sudo pmset -b sleep 5
+# sudo pmset -b sleep 5
