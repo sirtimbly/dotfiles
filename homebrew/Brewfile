@@ -16,9 +16,12 @@ if OS.mac?
     tap "homebrew/cask-fonts"
     # tap "iandol/adobe-fonts/font-source-code-pro"
 
-    brew "cocoapods"
+    # brew "cocoapods"
     brew "trash"
     brew "coreutils"
+    brew "curl"
+    brew "git"
+
     # Applications
     brew "lazydocker"
     brew "lazygit"
