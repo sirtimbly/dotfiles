@@ -18,3 +18,17 @@ then
   asdf install pnpm latest
 fi
 exit 0
+
+if ! test -d ~/.asdf/plugins/terraform
+then
+  asdf plugin add terraform
+  asdf install terraform latest
+fi
+exit 0
+
+if ! test -d ~/.asdf/plugins/granted
+then
+  asdf plugin add granted
+  asdf install granted latest
+fi
+exit 0

@@ -11,3 +11,4 @@ alias tui="taskwarrior-tui"
 alias tt="taskwarrior-tui"
 alias ta="task add"
 alias p="pnpm"
+alias assume='source $(asdf which assume)'

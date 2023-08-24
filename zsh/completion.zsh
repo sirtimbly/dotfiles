@@ -3,3 +3,16 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # pasting with tabs doesn't perform completion
 zstyle ':completion:*' insert-tab pending
+
+# copied from configfiles repo here: https://gitlab.internal.granular.ag/granular/shared-tooling/configfiles/-/blob/5faf6002bea7f168b58318f5267304873a884dd6/shrcfiles/4-1-aws.sh#L4-15
+if command -v granted &> /dev/null; then
+    # setup the assume command
+    unalias assume &> /dev/null
+    assume_path=$(which assume)
+    alias assume="source $assume_path"
+
+    # reload completions if needed
+    assume-completions-reload() {
+        granted completion -s zsh
+    }
+fi
