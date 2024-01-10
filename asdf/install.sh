@@ -32,3 +32,11 @@ then
   asdf install granted latest
 fi
 exit 0
+
+echo "Checking for asdf Go plugin."
+if ! test -d ~/.asdf/plugins/go
+then
+  asdf plugin add go
+  asdf install go latest
+fi
+exit 0
