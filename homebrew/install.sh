@@ -6,27 +6,31 @@
 # using Homebrew.
 
 # Check for Homebrew
-if test ! $(which brew)
+if test "$(arch)" = "i386"
 then
-  echo "  Installing Homebrew for you."
 
-  # Install the correct homebrew for each OS type
-  if test "$(uname)" = "Darwin"
+  if test ! $(which brew)
   then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo "  Installing Homebrew for you."
 
-  elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
-  then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # Install the correct homebrew for each OS type
+    if test "$(uname)" = "Darwin"
+    then
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
+    then
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    fi
 
   fi
+  # Update Homebrew recipes
+  # brew update
 
+  # Install all our dependencies with bundle (See Brewfile)
+  brew tap homebrew/bundle
+  brew bundle --file="$HOME/.dotfiles/homebrew/Brewfile"
 fi
-# Update Homebrew recipes
-# brew update
-
-# Install all our dependencies with bundle (See Brewfile)
-brew tap homebrew/bundle
-brew bundle --file="$HOME/.dotfiles/homebrew/Brewfile"
 
 exit 0

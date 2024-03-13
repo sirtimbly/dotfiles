@@ -6,8 +6,8 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "jesseduffield/lazydocker"
-tap "jesseduffield/lazygit"
+# tap "jesseduffield/lazydocker"
+# tap "jesseduffield/lazygit"
 # tap "mutagen-io/mutagen/mutagen"
 
 if OS.mac?
@@ -23,8 +23,8 @@ if OS.mac?
     brew "git"
 
     # Applications
-    brew "lazydocker"
-    brew "lazygit"
+    # brew "lazydocker"
+    # brew "lazygit"
     cask "atext"
     cask "iterm2"
     cask "karabiner-elements"
@@ -68,9 +68,6 @@ if OS.mac?
     # cask "quicklook-json"
     # cask "qlmarkdown"
 
-elsif OS.linux?
-    brew "xclip"
-end
 brew "sqlite"
 brew "python"
 brew "python@3"
@@ -88,7 +85,7 @@ brew "graphviz"
 brew "htop"
 brew "imagemagick"
 brew "libdvdcss"
-brew "loc"
+# brew "loc" #replaced with scc
 # brew "mutagen"
 brew "mackup"
 brew "magic-wormhole"

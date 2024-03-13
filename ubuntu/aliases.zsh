@@ -1,0 +1,1 @@
+alias loc=scc
