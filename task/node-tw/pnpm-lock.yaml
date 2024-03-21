@@ -1,0 +1,471 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  '@types/node-notifier':
+    specifier: ^8.0.5
+    version: registry.npmjs.org/@types/node-notifier@8.0.5
+  date-fns:
+    specifier: ^3.6.0
+    version: registry.npmjs.org/date-fns@3.6.0
+  node-notifier:
+    specifier: ^10.0.1
+    version: registry.npmjs.org/node-notifier@10.0.1
+  taskwarrior-lib:
+    specifier: ^0.5.2
+    version: registry.npmjs.org/taskwarrior-lib@0.5.2
+  tsx:
+    specifier: ^4.7.1
+    version: registry.npmjs.org/tsx@4.7.1
+
+packages:
+
+  registry.npmjs.org/@esbuild/aix-ppc64@0.19.12:
+    resolution: {integrity: sha512-bmoCYyWdEL3wDQIVbcyzRyeKLgk2WtWLTWz1ZIAZF/EGbNOwSA6ew3PftJ1PqMiOOGu0OyFMzG53L0zqIpPeNA==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/aix-ppc64/-/aix-ppc64-0.19.12.tgz}
+    name: '@esbuild/aix-ppc64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [ppc64]
+    os: [aix]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/android-arm64@0.19.12:
+    resolution: {integrity: sha512-P0UVNGIienjZv3f5zq0DP3Nt2IE/3plFzuaS96vihvD0Hd6H/q4WXUGpCxD/E8YrSXfNyRPbpTq+T8ZQioSuPA==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/android-arm64/-/android-arm64-0.19.12.tgz}
+    name: '@esbuild/android-arm64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [android]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/android-arm@0.19.12:
+    resolution: {integrity: sha512-qg/Lj1mu3CdQlDEEiWrlC4eaPZ1KztwGJ9B6J+/6G+/4ewxJg7gqj8eVYWvao1bXrqGiW2rsBZFSX3q2lcW05w==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/android-arm/-/android-arm-0.19.12.tgz}
+    name: '@esbuild/android-arm'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [arm]
+    os: [android]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/android-x64@0.19.12:
+    resolution: {integrity: sha512-3k7ZoUW6Q6YqhdhIaq/WZ7HwBpnFBlW905Fa4s4qWJyiNOgT1dOqDiVAQFwBH7gBRZr17gLrlFCRzF6jFh7Kew==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/android-x64/-/android-x64-0.19.12.tgz}
+    name: '@esbuild/android-x64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [android]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/darwin-arm64@0.19.12:
+    resolution: {integrity: sha512-B6IeSgZgtEzGC42jsI+YYu9Z3HKRxp8ZT3cqhvliEHovq8HSX2YX8lNocDn79gCKJXOSaEot9MVYky7AKjCs8g==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.19.12.tgz}
+    name: '@esbuild/darwin-arm64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/darwin-x64@0.19.12:
+    resolution: {integrity: sha512-hKoVkKzFiToTgn+41qGhsUJXFlIjxI/jSYeZf3ugemDYZldIXIxhvwN6erJGlX4t5h417iFuheZ7l+YVn05N3A==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/darwin-x64/-/darwin-x64-0.19.12.tgz}
+    name: '@esbuild/darwin-x64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/freebsd-arm64@0.19.12:
+    resolution: {integrity: sha512-4aRvFIXmwAcDBw9AueDQ2YnGmz5L6obe5kmPT8Vd+/+x/JMVKCgdcRwH6APrbpNXsPz+K653Qg8HB/oXvXVukA==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/freebsd-arm64/-/freebsd-arm64-0.19.12.tgz}
+    name: '@esbuild/freebsd-arm64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [freebsd]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/freebsd-x64@0.19.12:
+    resolution: {integrity: sha512-EYoXZ4d8xtBoVN7CEwWY2IN4ho76xjYXqSXMNccFSx2lgqOG/1TBPW0yPx1bJZk94qu3tX0fycJeeQsKovA8gg==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/freebsd-x64/-/freebsd-x64-0.19.12.tgz}
+    name: '@esbuild/freebsd-x64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [freebsd]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/linux-arm64@0.19.12:
+    resolution: {integrity: sha512-EoTjyYyLuVPfdPLsGVVVC8a0p1BFFvtpQDB/YLEhaXyf/5bczaGeN15QkR+O4S5LeJ92Tqotve7i1jn35qwvdA==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/linux-arm64/-/linux-arm64-0.19.12.tgz}
+    name: '@esbuild/linux-arm64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/linux-arm@0.19.12:
+    resolution: {integrity: sha512-J5jPms//KhSNv+LO1S1TX1UWp1ucM6N6XuL6ITdKWElCu8wXP72l9MM0zDTzzeikVyqFE6U8YAV9/tFyj0ti+w==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/linux-arm/-/linux-arm-0.19.12.tgz}
+    name: '@esbuild/linux-arm'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [arm]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/linux-ia32@0.19.12:
+    resolution: {integrity: sha512-Thsa42rrP1+UIGaWz47uydHSBOgTUnwBwNq59khgIwktK6x60Hivfbux9iNR0eHCHzOLjLMLfUMLCypBkZXMHA==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/linux-ia32/-/linux-ia32-0.19.12.tgz}
+    name: '@esbuild/linux-ia32'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [ia32]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/linux-loong64@0.19.12:
+    resolution: {integrity: sha512-LiXdXA0s3IqRRjm6rV6XaWATScKAXjI4R4LoDlvO7+yQqFdlr1Bax62sRwkVvRIrwXxvtYEHHI4dm50jAXkuAA==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/linux-loong64/-/linux-loong64-0.19.12.tgz}
+    name: '@esbuild/linux-loong64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [loong64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/linux-mips64el@0.19.12:
+    resolution: {integrity: sha512-fEnAuj5VGTanfJ07ff0gOA6IPsvrVHLVb6Lyd1g2/ed67oU1eFzL0r9WL7ZzscD+/N6i3dWumGE1Un4f7Amf+w==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/linux-mips64el/-/linux-mips64el-0.19.12.tgz}
+    name: '@esbuild/linux-mips64el'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [mips64el]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/linux-ppc64@0.19.12:
+    resolution: {integrity: sha512-nYJA2/QPimDQOh1rKWedNOe3Gfc8PabU7HT3iXWtNUbRzXS9+vgB0Fjaqr//XNbd82mCxHzik2qotuI89cfixg==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/linux-ppc64/-/linux-ppc64-0.19.12.tgz}
+    name: '@esbuild/linux-ppc64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [ppc64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/linux-riscv64@0.19.12:
+    resolution: {integrity: sha512-2MueBrlPQCw5dVJJpQdUYgeqIzDQgw3QtiAHUC4RBz9FXPrskyyU3VI1hw7C0BSKB9OduwSJ79FTCqtGMWqJHg==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/linux-riscv64/-/linux-riscv64-0.19.12.tgz}
+    name: '@esbuild/linux-riscv64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [riscv64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/linux-s390x@0.19.12:
+    resolution: {integrity: sha512-+Pil1Nv3Umes4m3AZKqA2anfhJiVmNCYkPchwFJNEJN5QxmTs1uzyy4TvmDrCRNT2ApwSari7ZIgrPeUx4UZDg==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/linux-s390x/-/linux-s390x-0.19.12.tgz}
+    name: '@esbuild/linux-s390x'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [s390x]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/linux-x64@0.19.12:
+    resolution: {integrity: sha512-B71g1QpxfwBvNrfyJdVDexenDIt1CiDN1TIXLbhOw0KhJzE78KIFGX6OJ9MrtC0oOqMWf+0xop4qEU8JrJTwCg==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.19.12.tgz}
+    name: '@esbuild/linux-x64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/netbsd-x64@0.19.12:
+    resolution: {integrity: sha512-3ltjQ7n1owJgFbuC61Oj++XhtzmymoCihNFgT84UAmJnxJfm4sYCiSLTXZtE00VWYpPMYc+ZQmB6xbSdVh0JWA==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/netbsd-x64/-/netbsd-x64-0.19.12.tgz}
+    name: '@esbuild/netbsd-x64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [netbsd]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/openbsd-x64@0.19.12:
+    resolution: {integrity: sha512-RbrfTB9SWsr0kWmb9srfF+L933uMDdu9BIzdA7os2t0TXhCRjrQyCeOt6wVxr79CKD4c+p+YhCj31HBkYcXebw==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/openbsd-x64/-/openbsd-x64-0.19.12.tgz}
+    name: '@esbuild/openbsd-x64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [openbsd]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/sunos-x64@0.19.12:
+    resolution: {integrity: sha512-HKjJwRrW8uWtCQnQOz9qcU3mUZhTUQvi56Q8DPTLLB+DawoiQdjsYq+j+D3s9I8VFtDr+F9CjgXKKC4ss89IeA==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/sunos-x64/-/sunos-x64-0.19.12.tgz}
+    name: '@esbuild/sunos-x64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [sunos]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/win32-arm64@0.19.12:
+    resolution: {integrity: sha512-URgtR1dJnmGvX864pn1B2YUYNzjmXkuJOIqG2HdU62MVS4EHpU2946OZoTMnRUHklGtJdJZ33QfzdjGACXhn1A==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/win32-arm64/-/win32-arm64-0.19.12.tgz}
+    name: '@esbuild/win32-arm64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/win32-ia32@0.19.12:
+    resolution: {integrity: sha512-+ZOE6pUkMOJfmxmBZElNOx72NKpIa/HFOMGzu8fqzQJ5kgf6aTGrcJaFsNiVMH4JKpMipyK+7k0n2UXN7a8YKQ==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/win32-ia32/-/win32-ia32-0.19.12.tgz}
+    name: '@esbuild/win32-ia32'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [ia32]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@esbuild/win32-x64@0.19.12:
+    resolution: {integrity: sha512-T1QyPSDCyMXaO3pzBkF96E8xMkiRYbUEZADd29SyPGabqxMViNoii+NcK7eWJAEoU6RZyEm5lVSIjTmcdoB9HA==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.19.12.tgz}
+    name: '@esbuild/win32-x64'
+    version: 0.19.12
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/@types/node-notifier@8.0.5:
+    resolution: {integrity: sha512-LX7+8MtTsv6szumAp6WOy87nqMEdGhhry/Qfprjm1Ma6REjVzeF7SCyvPtp5RaF6IkXCS9V4ra8g5fwvf2ZAYg==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@types/node-notifier/-/node-notifier-8.0.5.tgz}
+    name: '@types/node-notifier'
+    version: 8.0.5
+    dependencies:
+      '@types/node': registry.npmjs.org/@types/node@20.11.30
+    dev: false
+
+  registry.npmjs.org/@types/node@20.11.30:
+    resolution: {integrity: sha512-dHM6ZxwlmuZaRmUPfv1p+KrdD1Dci04FbdEm/9wEMouFqxYoFl5aMkt0VMAUtYRQDyYvD41WJLukhq/ha3YuTw==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/@types/node/-/node-20.11.30.tgz}
+    name: '@types/node'
+    version: 20.11.30
+    dependencies:
+      undici-types: registry.npmjs.org/undici-types@5.26.5
+    dev: false
+
+  registry.npmjs.org/date-fns@3.6.0:
+    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/date-fns/-/date-fns-3.6.0.tgz}
+    name: date-fns
+    version: 3.6.0
+    dev: false
+
+  registry.npmjs.org/esbuild@0.19.12:
+    resolution: {integrity: sha512-aARqgq8roFBj054KvQr5f1sFu0D65G+miZRCuJyJ0G13Zwx7vRar5Zhn2tkQNzIXcBrNVsv/8stehpj+GAjgbg==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/esbuild/-/esbuild-0.19.12.tgz}
+    name: esbuild
+    version: 0.19.12
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    optionalDependencies:
+      '@esbuild/aix-ppc64': registry.npmjs.org/@esbuild/aix-ppc64@0.19.12
+      '@esbuild/android-arm': registry.npmjs.org/@esbuild/android-arm@0.19.12
+      '@esbuild/android-arm64': registry.npmjs.org/@esbuild/android-arm64@0.19.12
+      '@esbuild/android-x64': registry.npmjs.org/@esbuild/android-x64@0.19.12
+      '@esbuild/darwin-arm64': registry.npmjs.org/@esbuild/darwin-arm64@0.19.12
+      '@esbuild/darwin-x64': registry.npmjs.org/@esbuild/darwin-x64@0.19.12
+      '@esbuild/freebsd-arm64': registry.npmjs.org/@esbuild/freebsd-arm64@0.19.12
+      '@esbuild/freebsd-x64': registry.npmjs.org/@esbuild/freebsd-x64@0.19.12
+      '@esbuild/linux-arm': registry.npmjs.org/@esbuild/linux-arm@0.19.12
+      '@esbuild/linux-arm64': registry.npmjs.org/@esbuild/linux-arm64@0.19.12
+      '@esbuild/linux-ia32': registry.npmjs.org/@esbuild/linux-ia32@0.19.12
+      '@esbuild/linux-loong64': registry.npmjs.org/@esbuild/linux-loong64@0.19.12
+      '@esbuild/linux-mips64el': registry.npmjs.org/@esbuild/linux-mips64el@0.19.12
+      '@esbuild/linux-ppc64': registry.npmjs.org/@esbuild/linux-ppc64@0.19.12
+      '@esbuild/linux-riscv64': registry.npmjs.org/@esbuild/linux-riscv64@0.19.12
+      '@esbuild/linux-s390x': registry.npmjs.org/@esbuild/linux-s390x@0.19.12
+      '@esbuild/linux-x64': registry.npmjs.org/@esbuild/linux-x64@0.19.12
+      '@esbuild/netbsd-x64': registry.npmjs.org/@esbuild/netbsd-x64@0.19.12
+      '@esbuild/openbsd-x64': registry.npmjs.org/@esbuild/openbsd-x64@0.19.12
+      '@esbuild/sunos-x64': registry.npmjs.org/@esbuild/sunos-x64@0.19.12
+      '@esbuild/win32-arm64': registry.npmjs.org/@esbuild/win32-arm64@0.19.12
+      '@esbuild/win32-ia32': registry.npmjs.org/@esbuild/win32-ia32@0.19.12
+      '@esbuild/win32-x64': registry.npmjs.org/@esbuild/win32-x64@0.19.12
+    dev: false
+
+  registry.npmjs.org/fsevents@2.3.3:
+    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz}
+    name: fsevents
+    version: 2.3.3
+    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  registry.npmjs.org/get-tsconfig@4.7.3:
+    resolution: {integrity: sha512-ZvkrzoUA0PQZM6fy6+/Hce561s+faD1rsNwhnO5FelNjyy7EMGJ3Rz1AQ8GYDWjhRs/7dBLOEJvhK8MiEJOAFg==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/get-tsconfig/-/get-tsconfig-4.7.3.tgz}
+    name: get-tsconfig
+    version: 4.7.3
+    dependencies:
+      resolve-pkg-maps: registry.npmjs.org/resolve-pkg-maps@1.0.0
+    dev: false
+
+  registry.npmjs.org/growly@1.3.0:
+    resolution: {integrity: sha512-+xGQY0YyAWCnqy7Cd++hc2JqMYzlm0dG30Jd0beaA64sROr8C4nt8Yc9V5Ro3avlSUDTN0ulqP/VBKi1/lLygw==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/growly/-/growly-1.3.0.tgz}
+    name: growly
+    version: 1.3.0
+    dev: false
+
+  registry.npmjs.org/is-docker@2.2.1:
+    resolution: {integrity: sha512-F+i2BKsFrH66iaUFc0woD8sLy8getkwTwtOBjvs56Cx4CgJDeKQeqfz8wAYiSb8JOprWhHH5p77PbmYCvvUuXQ==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/is-docker/-/is-docker-2.2.1.tgz}
+    name: is-docker
+    version: 2.2.1
+    engines: {node: '>=8'}
+    hasBin: true
+    dev: false
+
+  registry.npmjs.org/is-wsl@2.2.0:
+    resolution: {integrity: sha512-fKzAra0rGJUUBwGBgNkHZuToZcn+TtXHpeCgmkMJMMYx1sQDYaCSyjJBSCa2nH1DGm7s3n1oBnohoVTBaN7Lww==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/is-wsl/-/is-wsl-2.2.0.tgz}
+    name: is-wsl
+    version: 2.2.0
+    engines: {node: '>=8'}
+    dependencies:
+      is-docker: registry.npmjs.org/is-docker@2.2.1
+    dev: false
+
+  registry.npmjs.org/isexe@2.0.0:
+    resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz}
+    name: isexe
+    version: 2.0.0
+    dev: false
+
+  registry.npmjs.org/lru-cache@6.0.0:
+    resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/lru-cache/-/lru-cache-6.0.0.tgz}
+    name: lru-cache
+    version: 6.0.0
+    engines: {node: '>=10'}
+    dependencies:
+      yallist: registry.npmjs.org/yallist@4.0.0
+    dev: false
+
+  registry.npmjs.org/node-notifier@10.0.1:
+    resolution: {integrity: sha512-YX7TSyDukOZ0g+gmzjB6abKu+hTGvO8+8+gIFDsRCU2t8fLV/P2unmt+LGFaIa4y64aX98Qksa97rgz4vMNeLQ==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/node-notifier/-/node-notifier-10.0.1.tgz}
+    name: node-notifier
+    version: 10.0.1
+    dependencies:
+      growly: registry.npmjs.org/growly@1.3.0
+      is-wsl: registry.npmjs.org/is-wsl@2.2.0
+      semver: registry.npmjs.org/semver@7.6.0
+      shellwords: registry.npmjs.org/shellwords@0.1.1
+      uuid: registry.npmjs.org/uuid@8.3.2
+      which: registry.npmjs.org/which@2.0.2
+    dev: false
+
+  registry.npmjs.org/resolve-pkg-maps@1.0.0:
+    resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/resolve-pkg-maps/-/resolve-pkg-maps-1.0.0.tgz}
+    name: resolve-pkg-maps
+    version: 1.0.0
+    dev: false
+
+  registry.npmjs.org/semver@7.6.0:
+    resolution: {integrity: sha512-EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/semver/-/semver-7.6.0.tgz}
+    name: semver
+    version: 7.6.0
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      lru-cache: registry.npmjs.org/lru-cache@6.0.0
+    dev: false
+
+  registry.npmjs.org/shellwords@0.1.1:
+    resolution: {integrity: sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/shellwords/-/shellwords-0.1.1.tgz}
+    name: shellwords
+    version: 0.1.1
+    dev: false
+
+  registry.npmjs.org/taskwarrior-lib@0.5.2:
+    resolution: {integrity: sha512-uefKH0Z5M/fgP4HCVWfvU0fB9lRxAYiaicS6/Z937SK5K4D2s8hMrAbo6V9XJZVQhjBCcpnbzJZqirLTv+qQHA==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/taskwarrior-lib/-/taskwarrior-lib-0.5.2.tgz}
+    name: taskwarrior-lib
+    version: 0.5.2
+    dev: false
+
+  registry.npmjs.org/tsx@4.7.1:
+    resolution: {integrity: sha512-8d6VuibXHtlN5E3zFkgY8u4DX7Y3Z27zvvPKVmLon/D4AjuKzarkUBTLDBgj9iTQ0hg5xM7c/mYiRVM+HETf0g==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/tsx/-/tsx-4.7.1.tgz}
+    name: tsx
+    version: 4.7.1
+    engines: {node: '>=18.0.0'}
+    hasBin: true
+    dependencies:
+      esbuild: registry.npmjs.org/esbuild@0.19.12
+      get-tsconfig: registry.npmjs.org/get-tsconfig@4.7.3
+    optionalDependencies:
+      fsevents: registry.npmjs.org/fsevents@2.3.3
+    dev: false
+
+  registry.npmjs.org/undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/undici-types/-/undici-types-5.26.5.tgz}
+    name: undici-types
+    version: 5.26.5
+    dev: false
+
+  registry.npmjs.org/uuid@8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz}
+    name: uuid
+    version: 8.3.2
+    hasBin: true
+    dev: false
+
+  registry.npmjs.org/which@2.0.2:
+    resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/which/-/which-2.0.2.tgz}
+    name: which
+    version: 2.0.2
+    engines: {node: '>= 8'}
+    hasBin: true
+    dependencies:
+      isexe: registry.npmjs.org/isexe@2.0.0
+    dev: false
+
+  registry.npmjs.org/yallist@4.0.0:
+    resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==, registry: https://gitlab.internal.granular.ag/api/v4/packages/npm, tarball: https://registry.npmjs.org/yallist/-/yallist-4.0.0.tgz}
+    name: yallist
+    version: 4.0.0
+    dev: false

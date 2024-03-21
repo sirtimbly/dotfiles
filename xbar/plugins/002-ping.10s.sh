@@ -28,7 +28,7 @@ COLORS=(${RED_GREEN_THEME[@]})
 MENUFONT="" #size=10 font=UbuntuMono-Bold"
 FONT=""
 MAX_PING=1000
-SITES=(google.com us.insights.granular.ag br.insights.granular.ag github.com)
+SITES=(google.com us.insights.granular.ag github.com)
 
 #grab ping times for all sites
 SITE_INDEX=0

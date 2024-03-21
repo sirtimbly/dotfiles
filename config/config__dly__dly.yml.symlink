@@ -1,0 +1,4 @@
+DailyNotesPath: /Users/timbendt/Projects/GranularLogSeq/journals
+FilenameFormat: "2006_01_02"
+AddTimestamp: true
+AppendHashtag: from-cli

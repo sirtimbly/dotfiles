@@ -9,6 +9,7 @@ alias glz="lazygit"
 alias t="task"
 alias tui="taskwarrior-tui"
 alias tt="taskwarrior-tui"
+alias to="taskopen"
 alias ta="task add"
 alias p="pnpm"
 alias assume='source $(asdf which assume)'

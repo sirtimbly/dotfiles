@@ -12,10 +12,11 @@
 #   variable=$HOME/task
 #   variable=$VALUE
 
+
 # Use the command 'task show' to see all defaults and overrides
 
 # Files
-data.location=~/Documents/_OldDropbx/_Tim/Projects/_tasks/
+data.location=~/.task
 
 # To use the default location of the XDG directories,
 # move this configuration file from ~/.taskrc to ~/.config/task/taskrc and uncomment below
@@ -26,8 +27,8 @@ data.location=~/Documents/_OldDropbx/_Tim/Projects/_tasks/
 # Color theme (uncomment one to use)
 #include light-16.theme
 # include light-256.theme
-#include dark-16.theme
-include dark-256.theme
+include dark-16.theme
+# include ~/.task/dark-256.theme
 #include dark-red-256.theme
 #include dark-green-256.theme
 #include dark-blue-256.theme
@@ -41,8 +42,8 @@ include dark-256.theme
 
 news.version=2.6.0
 
-uda.taskwarrior-tui.task-report.prompt-on-delete=true
-uda.taskwarrior-tui.selection.reverse=yes
+#uda.taskwarrior-tui.task-report.prompt-on-delete=true
+#uda.taskwarrior-tui.selection.reverse=yes
 
 report.minimal.sort=start-,urgency-,project+/
 report.minimal.columns=project,description.count
@@ -53,3 +54,20 @@ report._reviewed.description=Tasksh review report.  Adjust the filter to your ne
 report._reviewed.columns=uuid
 report._reviewed.sort=reviewed+,modified+
 report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
+report.next.labels=Id,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description[A],Urg
+report.next.columns=id,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.next.sort=project+/,urgency-,start-,tags
+
+report.work.labels=Id,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description[A],Urg
+report.work.filter=+PENDING and project:granular
+report.work.columns=id,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.work.sort=project+/,urgency-,start-,tags
+
+color.tag.work=rgb041
+color.tag.personal=rgb235
+
+color.project.clients= rgb123 on black
+color.project.granular=rgb311 on black
+color.project.personal=rgb125
+color.project.hobby=rgb003
+
