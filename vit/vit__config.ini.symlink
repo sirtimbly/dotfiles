@@ -67,7 +67,7 @@ mouse = True
 # automatically cleaned on boot, e.g.:
 #   /var/run/user/$UID/vit
 #   /tmp/vit_pids
-pid_dir = /var/run/user/$UID/vit
+pid_dir = /tmp/vit_pids
 
 # Int. The number of flash repetitions focusing on the edit made
 flash_focus_repeat_times = 1
@@ -113,7 +113,7 @@ enabled = True
 # a comma separated list of columns to enable markers for. Possible columns
 # are:
 #  depends,description,due,project,recur,scheduled,start,status,tags,until
-columns = all
+columns = depends,recur,scheduled,start,status,tags,until
 
 # The header label for the markers column when it is displayed.
 #header_label =
@@ -142,7 +142,7 @@ columns = all
 # To disable a specific marker, set its label to empty. Any section enclosed
 # in brackets should be replaced by the appropriate identifier, eg.
 # [project_name] with the actual name of a project.
-#active.label = (A)
+active.label = ⚡︎»
 #blocked.label = (BD)
 #blocking.label = (BG)
 #completed.label = (C)
@@ -231,7 +231,7 @@ columns = all
 # highlighted task. Any attribute listed in 'task _columns' is supported, e.g.
 #   o = :!wr echo project is {TASK_PROJECT}<Enter>
 
-    o =:!wr taskopen {TASK_ID}<Enter>
+    o =:! taskopen {TASK_ID}<Enter>
 
 # Multiple keybindings can be associated with the same action/macro, simply
 # separate the keybindings with a comma:

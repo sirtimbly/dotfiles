@@ -16,7 +16,8 @@
 
 
 # COUNT=$(echo $TASK_READY | sed '$!d')
-COUNT=$(/usr/local/bin/task +READY count)
+FILTER="+PENDING and +READY and (+DUE or +OVERDUE)"
+COUNT=$(/usr/local/bin/task $FILTER count)
 echo "☑️ $COUNT"
 echo "---"
-/usr/local/bin/task minimal | tail -n +4
+/usr/local/bin/task minimal $FILTER | tail -n +4
