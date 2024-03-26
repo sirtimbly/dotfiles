@@ -5,6 +5,6 @@
 # fi
 
 # Global Installs
-npm i -g kill-port http-server http-server-spa hexo commitizen typescript npkill yalc expo-cli
+npm i -g kill-port http-server http-server-spa hexo commitizen typescript npkill yalc expo-cli zx
 
 exit 0

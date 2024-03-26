@@ -41,7 +41,7 @@ gitdirty(){
             DIRTYDIR="${d}"
             ISDIRTY=$(git diff --shortstat 2> /dev/null | tail -n1)
             BRANCHNAME=$(git symbolic-ref --short HEAD)
-            OPENOPTS="| shell=/Users/timbendt/.dotfiles/bin/iterm | param1=\"$DIRECTORY/$d\" | param2=\"lazygit\""
+            OPENOPTS="| shell=/Users/timbendt/.dotfiles/bin/iterm | param1=\"$DIRECTORY/$d\" | param2=\"lazygit\" | param3=\"lazygit\""
             [[ $ISDIRTY != "" ]] && printf " ${GITDIRTY_ISSUE}${GITDIRTY}${GITDIRTY_NORMAL}%-26s $DIRTYPOST $OPENOPTS \n" "$DIRTYDIR ⎇$BRANCHNAME"
             [[ $ISDIRTY == "" ]] && printf " ${GITDIRTY_HIGHLIGHT}${GITCLEAN}${GITCLEAN_NORMAL}%-26s $CLEANPOST $OPENOPTS \n" "$DIRTYDIR ⎇$BRANCHNAME"
           else

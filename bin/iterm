@@ -3,10 +3,11 @@
 # Open new iTerm window from the command line
 #
 # Usage:
-#     iterm                   Opens the current directory in a new iTerm window
-#     iterm [PATH]            Open PATH in a new iTerm window
-#     iterm [CMD]             Open a new iTerm window and execute CMD
-#     iterm [PATH] [CMD] ...  You can prob'ly guess
+#     iterm                    Opens the current directory in a new iTerm window
+#     iterm -p=[profile] Opens with a specific iTerm Profile
+#     iterm [PATH]             Open PATH in a new iTerm window
+#     iterm [CMD]              Open a new iTerm window and execute CMD
+#     iterm [PATH] [CMD] ...   You can prob'ly guess
 #
 # Example:
 #     iterm ~/Code/HelloWorld ./setup.sh
@@ -27,6 +28,22 @@ function iterm () {
     local cmd=""
     local wd="$PWD"
     local args="$@"
+    local p_out="default"
+    while getopts ":p:" opt; do
+      case $opt in
+        p) p_out="$OPTARG"
+        ;;
+        \?) echo "Invalid option -$OPTARG" >&2
+        exit 1
+        ;;
+      esac
+
+      case $OPTARG in
+        -*) echo "Option $opt needs a valid argument"
+        exit 1
+        ;;
+      esac
+    done
 
     if [ -d "$1" ]; then
         wd="$1"
@@ -37,15 +54,24 @@ function iterm () {
         # echo $args
         cmd="; $args"
     fi
+    if $p_out; then
 
+      osascript &>/dev/null <<EOF
+        tell application "iTerm2"
+          create window with "$p_out" profile
+        end tell
+EOF
+
+    else
     osascript &>/dev/null <<EOF
         tell application "iTerm2"
-          create window with default profile
+          create window with "default" profile
           tell current session of current window
             delay 1
             write text "cd $wd$cmd"
           end tell
         end tell
 EOF
+  fi
 }
 iterm $@

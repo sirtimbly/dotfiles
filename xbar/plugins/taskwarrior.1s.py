@@ -59,7 +59,8 @@ def print_output(
         highlight_id_list=[],
         highlight_color=' color=Red',
         highlight_command='',
-        alternate_command=''):
+        alternate_command='',
+        prepend_char='⎕ '):
     output = ''
 
     path_task = subprocess.check_output(['which', 'task']).decode('ascii').rstrip()
@@ -72,12 +73,12 @@ def print_output(
     output_lines = output.decode('utf-8').split('\n')
 
     # next total
-    p1 = Popen([path_task, 'next'],
+    p1 = Popen([path_task, 'count', '+PENDING'],
               stdin=None, stdout=PIPE, stderr=PIPE)
     output1, err1 = p1.communicate()
 
-    next_lines = output1.decode('utf-8').split('\n')
-    next_count = len(next_lines[2:-1])
+    pending_count = output1.decode('utf-8')
+
 
     id_list = []
     content_lines = []
@@ -99,12 +100,12 @@ def print_output(
 
     if head:
         if content_count == 0:
-            print("ⓣ")    # ⓪ #⓿
+            print("ⓣ" + '/' + str(pending_count))    # ⓪ #⓿
         elif content_count < 21:
             circle_number = ["⓪", "①", "②", "③", "④", "⑤", "⑥",
                              "⑦", "⑧", "⑨", "⑩", "⑪", "⑫", "⑬",
                              "⑭", "⑮", "⑯", "⑰", "⑱", "⑲", "⑳"]
-            print(circle_number[content_count] + '/' + str(next_count) + ' '  + '| color=Yellow')
+            print('⚡️' + circle_number[content_count] + '/' + str(pending_count) + ' | '  + '')
         else:
             print(str(content_count))   + '| color=Red'
 
@@ -117,10 +118,10 @@ def print_output(
 
     # total_number_of_tasks = content_lines[-1]
 
-    content_formatting = ' | size=12 font=Courier'
+    content_formatting = ' | size=13 font="JetBrains Mono"'
 
     if print_content:
-        print(table_head + content_formatting)
+        print(':' + cmd + ':\n ' + table_head + content_formatting)
         print('---')
 
     for content_line in content_lines[2:-1]:
@@ -149,9 +150,9 @@ def print_output(
                 if len(highlight_command) > 0:
                     cmd = build_command(
                         t_id=content_id, action=highlight_command)
-                print(content_line + content_formatting + highlight_color + cmd)
+                print('⍄ ' + content_line + content_formatting + highlight_color + cmd)
             else:
-                print(content_line + content_formatting + color + cmd)
+                print(prepend_char + content_line + content_formatting + color + cmd)
 
             # adding an alternative command (press ALT for this!)
             # printing the same stuff again, only with a different action
@@ -161,9 +162,9 @@ def print_output(
                     t_id=content_id, action=alternate_command)
 
                 if content_id in highlight_id_list:
-                    print(content_line + content_formatting + highlight_color + alt_cmd + ' alternate=true')
+                    print('⍄ ' + content_line + content_formatting + highlight_color + alt_cmd + ' alternate=true')
                 else:
-                    print(content_line + content_formatting + color + alt_cmd + ' alternate=true')
+                    print(prepend_char + content_line + content_formatting + color + alt_cmd + ' alternate=true')
 
     return id_list
 
@@ -185,13 +186,13 @@ def main(argv):
         exit()
 
     if is_darkmode():
-        color_running = ' color=Red'
-        color_pending = ' color=Yellow'
-        color_completed = ' color=Green'
+        color_running = ' color=#b9d977'
+        color_pending = ' color=#c4e2f2'
+        color_completed = ' color=#cccccc'
     else:
-        color_running = ' color=Red'
+        color_running = ' color=Green'
         color_pending = ' color=Black'
-        color_completed = ' color=Green'
+        color_completed = ' color=Gray'
 
     id_list = print_output('active', color_running, True, print_content=False)
 
@@ -217,7 +218,8 @@ def main(argv):
         color_completed,
         False,
         command='start',
-        alternate_command='delete')
+        alternate_command='delete',
+        prepend_char="〿 ")
 
     return
 
