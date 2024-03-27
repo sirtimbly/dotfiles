@@ -67,9 +67,9 @@ const now = Date.now();
 const startOfDay = lightFormat(now, "yyyy-MM-dd");
 // console.log("🚀 ~ starOfDay:", startOfDay)
 const exportToday = await $`${timew} export from ${startOfDay}`.quiet();
-const todayData = JSON.parse(exportToday.stdout);
+const timespanData = JSON.parse(exportToday.stdout);
 // console.log("🚀 ~ exportToday:", todayData);
-const totalTime = todayData
+const totalTime = timespanData
 	.map((t) =>
 		intervalToDuration({
 			start: parseISO(t.start),
@@ -88,7 +88,7 @@ const totalTime = todayData
 const allTags = await $`${task} _tags`.quiet();
 const tagList = allTags.stdout.split("\n");
 // console.log("🚀 ~ tagList:", tagList);
-const tags = todayData.reduce((prev, curr) => {
+const tags = timespanData.reduce((prev, curr) => {
 	for (const t of curr.tags) {
 		const newDuration = intervalToDuration({
 			start: parseISO(curr.start),
@@ -130,28 +130,32 @@ xbar([
 			: `⌚️[${totalTime.hours}h${totalTime.minutes}m]`,
 	},
 	separator,
-	`Today ${startOfDay}  | disabled=true`,
+	`Today ${startOfDay}`,
 	{
-		text: `Time-spans (${todayData.length})`,
-		submenu: todayData.map((x) => {
-			const isEnded = !!x.end;
-			return {
-				text: `${isEnded ? "🪵" : "▶️"} [${getDuration(
-					x.start,
-					x.end,
-				)}] ${isoToTime(x.start)}-${isoToTime(x.end)}`,
-				color: isEnded ? "black" : "green",
-				submenu: x.tags.sort((a, b) => b.length - a.length),
-			};
-		}),
+		text: `Time-spans (${timespanData.length})`,
+		...(timespanData.length
+			? {
+					submenu: timespanData.map((x) => {
+						const isEnded = !!x.end;
+						return {
+							text: `${isEnded ? "🪵" : "▶️"} [${getDuration(
+								x.start,
+								x.end,
+							)}] ${isoToTime(x.start)}-${isoToTime(x.end)}`,
+							color: isEnded ? "black" : "green",
+							submenu: x.tags.sort((a, b) => b.length - a.length),
+						};
+					}),
+			  }
+			: {}),
 	},
 	{
 		text: `Tags (${submenuTags.length})`,
-		submenu: submenuTags,
+		...(submenuTags.length ? { submenu: submenuTags } : {}),
 	},
 	{
 		text: `Projects (${submenuProjects.length})`,
-		submenu: submenuProjects,
+		...(submenuProjects.length ? { submenu: submenuProjects } : {}),
 	},
 	{
 		text: "💻 View Summary",

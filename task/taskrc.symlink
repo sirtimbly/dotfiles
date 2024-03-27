@@ -67,9 +67,9 @@ report._reviewed.columns=uuid
 report._reviewed.sort=reviewed+,modified+
 report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
 
-report.nextxbar.labels= ID,Due,Deps,P,Project,Tags,R,Description
+report.nextxbar.labels= ID,Due,Deps,P,Project,Description,Tags,R
 report.nextxbar.filter=+PENDING -WAITING
-report.nextxbar.columns=id,due.relative,depends,priority,project,tags,recur.indicator,description
+report.nextxbar.columns=id,due.relative,depends,priority,project,description,tags,recur.indicator
 report.nextxbar.sort=project+,urgency-,start-,tags
 
 report.completed.sort=end-
@@ -77,8 +77,8 @@ report.completed.filter=status:completed and end.after:-2d
 report.completed.labels=ID,UUID,Completed,Due,Project,Tags,R,Description
 report.completed.columns=id,uuid.short,end.relative,due,project,tags,recur.indicator,description
 
-report.next.labels=Deps,P,Project,Tag,Recur,S,Due,Until,Description[A],+🦾,$🥵,Urg,Id,Age
-report.next.columns=depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,impact,cost,urgency,id,entry.age
+report.next.labels=Deps,P,Project,Recur,S,Due,Until,Description[A],Tags,+🦾,$🥵,Urg,Id,Age
+report.next.columns=depends,priority,project,recur,scheduled.countdown,due.relative,until.remaining,description.count,tags,impact,cost,urgency,id,entry.age
 report.next.sort=project+/,urgency-,start-,tags
 
 report.work.labels=Deps,P,Project,Description[A],Tag,Recur,S,Due,Until,+🦾,$🥵,Urg,Age,ID,
@@ -101,12 +101,19 @@ report.minimal.labels=Due,Proj,Desc,Tags
 # Colors
 color.tag.work=rgb041
 color.tag.personal=rgb235
-color.project.clients= rgb123 on black
-color.project.granular=rgb421 on black
-color.project.personal=rgb125
-color.project.hobby=rgb203
-color.project.home=rgb131
+color.tag.clients= rgb123 on black
+color.tag.biz= rgb354 on black
+color.tag.granular=rgb421 on black
+color.tag.personal=rgb125
+color.tag.hobby=rgb203
+color.tag.home=rgb531
 color.tag.ACTIVE=bold black on yellow
+
+urgency.user.tag.work.coefficient=3.0
+urgency.user.tag.granular.coefficient=2.0
+urgency.user.tag.clients.coefficient=2.0
+urgency.user.tag.biz.coefficient=2.0
+urgency.user.tag.maintenance.coefficient=1.1
 
 # Server Config
 taskd.certificate=/Users/timbendt/.task/tim_bendt.cert.pem
@@ -116,12 +123,11 @@ taskd.server=ds923plus.local:53589
 taskd.credentials=Public/Tim Bendt/a0c61d3f-c712-4103-8cfd-74a5bd994c39
 
 # Contexts
-context.work.read=project:granular
-context.work.write=project:granular
-context.not-work.read=project.not:granular project.not:clients
-context.personal.read=project:personal or project:home
-context.clients.read=project:clients
-context.clients.write=project:clients
+context.work.read=+work and -personal or +granular
+context.work.write=+work
+context.not-work.read=-work and -clients
+context.personal.read=+home or +personal
+context.clients.read=+clients or +client or +ge or +biz
+context.clients.write=+clients
 
 
-context=work
