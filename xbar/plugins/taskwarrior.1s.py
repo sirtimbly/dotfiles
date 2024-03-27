@@ -122,10 +122,11 @@ def print_output(
 
     # total_number_of_tasks = content_lines[-1]
 
-    content_formatting = ' | size=13 font="JetBrains Mono"'
+    content_formatting = ' | color=black size=13 font="JetBrains Mono" '
 
     if print_content:
-        print(':' + cmd + ':\n ' + table_head + content_formatting)
+        print('╔═ ' + cmd + content_formatting)
+        print('║ ' + table_head + content_formatting)
         print('---')
 
     for content_line in content_lines[2:-1]:
@@ -192,11 +193,11 @@ def main(argv):
     if is_darkmode():
         color_running = ' color=#b9d977'
         color_pending = ' color=#c4e2f2'
-        color_completed = ' color=#cccccc'
+        color_completed = ' color=#dedede'
     else:
         color_running = ' color=Green'
         color_pending = ' color=Black'
-        color_completed = ' color=Gray'
+        color_completed = ' color=White'
 
     id_list = print_output('active', color_running, True, print_content=False)
 
@@ -221,7 +222,7 @@ def main(argv):
         'completed',
         color_completed,
         False,
-        command='modify status:pending',
+        command='"modify status:pending"',
         alternate_command='delete',
         prepend_char="〿 ")
 

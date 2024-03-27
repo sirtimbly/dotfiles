@@ -23,10 +23,14 @@
 import "zx/globals";
 import xbar, { separator } from "@sindresorhus/xbar";
 import {
+	add,
+	addMinutes,
 	parseISO,
 	formatDistanceToNow,
 	lightFormat,
 	intervalToDuration,
+	formatDuration,
+	isBefore,
 } from "date-fns";
 import { compact } from "lodash-es";
 
@@ -34,6 +38,14 @@ const timew = process.env.TIMEW_BIN || "/usr/local/bin/timew";
 const task = process.env.TASK_BIN || "/usr/local/bin/task";
 const shellSummary = process.env.SHELL_SUMMARY || "/bin/zsh";
 
+export const addDurations = (duration1, duration2) => {
+	const baseDate = new Date(0); // can probably be any date, 0 just seemed like a good start
+
+	return intervalToDuration({
+		start: baseDate,
+		end: add(add(baseDate, duration1), duration2),
+	});
+};
 function getDuration(isoStart, isoEnd) {
 	if (!isoStart) {
 		return "X";
@@ -46,7 +58,8 @@ function getDuration(isoStart, isoEnd) {
 		end: endDate,
 	});
 	// console.log("🚀 ~ getDuration ~ duration:", duration)
-	return `${duration.hours}h ${duration.minutes}m ${duration.seconds}s`;
+	// return `${duration.hours}h ${duration.minutes}m ${duration.seconds}s`;
+	return formatDuration(duration);
 }
 
 function isoToTime(dateIso) {
@@ -67,7 +80,9 @@ const now = Date.now();
 const startOfDay = lightFormat(now, "yyyy-MM-dd");
 // console.log("🚀 ~ starOfDay:", startOfDay)
 const exportToday = await $`${timew} export from ${startOfDay}`.quiet();
-const timespanData = JSON.parse(exportToday.stdout);
+const timespanData = JSON.parse(exportToday.stdout).sort((a, b) =>
+	isBefore(parseISO(a.start), parseISO(b.start)) ? 1 : -1,
+);
 // console.log("🚀 ~ exportToday:", todayData);
 const totalTime = timespanData
 	.map((t) =>
@@ -76,14 +91,7 @@ const totalTime = timespanData
 			end: t.end ? parseISO(t.end) : new Date(),
 		}),
 	)
-	.reduce(
-		(curr, prev) => ({
-			hours: prev.hours + curr.hours,
-			minutes: prev.minutes + curr.minutes,
-			seconds: prev.seconds + curr.seconds,
-		}),
-		{ hours: 0, minutes: 0, seconds: 0 },
-	);
+	.reduce(addDurations, { hours: 0, minutes: 0, seconds: 0 });
 // console.log(data)
 const allTags = await $`${task} _tags`.quiet();
 const tagList = allTags.stdout.split("\n");
@@ -108,28 +116,36 @@ const tags = timespanData.reduce((prev, curr) => {
 // console.log("🚀 ~ tags:", tags);
 const submenuTags = compact(
 	Object.keys(tags).map((k) =>
-		tags[k].type === "tag"
-			? `🏷️ [${tags[k].hours}h ${tags[k].minutes}m ${tags[k].seconds}s] ${k} `
-			: undefined,
+		tags[k].type === "tag" ? `🏷️ [${formatDuration(tags[k])}] ${k} ` : undefined,
 	),
 );
 // console.log("🚀 ~ submenuTags:", submenuTags);
 const submenuProjects = compact(
 	Object.keys(tags).map((k) =>
 		tags[k].type === "project"
-			? `🛠️ [${tags[k].hours}h ${tags[k].minutes}m ${tags[k].seconds}s] ${k} `
+			? `🛠️ [${formatDuration(tags[k])}] ${k} `
 			: undefined,
 	),
 );
-const taskText = activeData.tags.filter((t) => !tagList.includes(t)).join(",");
-const taskTags = activeData.tags.filter((t) => tagList.includes(t)).join(", ");
+const taskText = activeData?.tags
+	?.filter((t) => !tagList.includes(t))
+	.join(",");
+const taskTags = activeData?.tags
+	?.filter((t) => tagList.includes(t))
+	.join(", ");
 // console.log("🚀 ~ submenuProjects:", submenuProjects);
 // console.log("🚀 ~ submenuItems:", submenuItems);
+const pomodoroDone = isBefore(
+	addMinutes(parseISO(activeData.start), 35),
+	new Date(),
+);
 xbar([
 	{
 		text: activeData
-			? `▶️⌚️[${currentTime}] `
-			: `⌚️[${totalTime.hours}h${totalTime.minutes}m]`,
+			? `${pomodoroDone ? "🍅" : "▶️"} ⌚️[${currentTime}] | color=${
+					pomodoroDone ? "red" : "green"
+			  }`
+			: `⌚️[${formatDuration(totalTime, { format: ["hours", "minutes"] })}]`,
 	},
 	...(taskText
 		? [separator, `▶️ ${taskText} | color=green`, `🏷️ [${taskTags}]`]
@@ -138,22 +154,21 @@ xbar([
 	`Today ${startOfDay}`,
 	{
 		text: `Time-spans (${timespanData.length})`,
-		...(timespanData.length
-			? {
-					submenu: timespanData.map((x) => {
-						const isEnded = !!x.end;
-						return {
-							text: `${isEnded ? "🪵" : "▶️"} [${getDuration(
-								x.start,
-								x.end,
-							)}] ${isoToTime(x.start)}-${isoToTime(x.end)}`,
-							color: isEnded ? "black" : "green",
-							submenu: x.tags.sort((a, b) => b.length - a.length),
-						};
-					}),
-			  }
-			: {}),
 	},
+	...(timespanData.length
+		? timespanData.map((x) => {
+				const isEnded = !!x.end;
+				return {
+					text: `${isEnded ? "🪵" : "▶️"} [${getDuration(
+						x.start,
+						x.end,
+					)}] ${isoToTime(x.start)}-${isoToTime(x.end)}`,
+					color: isEnded ? "black" : "green",
+					submenu: x.tags.sort((a, b) => b.length - a.length),
+				};
+		  })
+		: []),
+
 	{
 		text: `Tags (${submenuTags.length})`,
 		...(submenuTags.length ? { submenu: submenuTags } : {}),
