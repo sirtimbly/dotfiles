@@ -1,24 +1,39 @@
 #!/usr/bin/env /Users/timbendt/.asdf/shims/node
+//
+// Taskwarrior
+//
+// <xbar.title>TimeWarrior Active Time</xbar.title>
+// <xbar.version>v1.0</xbar.version>
+// <xbar.author>sirtimbly</xbar.author>
+// <xbar.author.github>sirtimbly</xbar.author.github>
+// <xbar.desc>Task time tracker status.</xbar.desc>
+// <xbar.dependencies>task,timew,node,zx,date-fns</xbar.dependencies>
+// <xbar.image>http://uploads.timbendt.com/CleanShot-2024-03-26-at-18.57.01-2x-BSYJBCFwb9M9VLpk7A6NV6ha9Bwb7oVrocAkqQpZtaIHiXLnkp0OyEjMTu0rp85vtHltyudeWLFEVFcxZryP23I4D6oBSFZLaZa2.png</xbar.image>
+//
+// Dependencies:
+//   taskwarrior (http://taskwarrior.org)
+//      available via homebrew `brew install task`
+//   timewarrior (https://timewarrior.net/)
+//      available via homebrew `brew install timewarrior`
+//
+//	<xbar.var>string(TASK_BIN="/usr/local/bin/task"): Location of the taskwarrior binary</xbar.var>
+//	<xbar.var>string(TIMEW_BIN="/usr/local/bin/timew"): Location of timewarrior binary</xbar.var>
+//	<xbar.var>string(SHELL_SUMMARY="/Users/timbendt/.dotfiles/bin/iterm"): Shell command for launching the Summary.</xbar.var>
 
 import "zx/globals";
-import xbar, { separator, isDarkMode } from "@sindresorhus/xbar";
+import xbar, { separator } from "@sindresorhus/xbar";
 import {
 	parseISO,
 	formatDistanceToNow,
 	lightFormat,
 	intervalToDuration,
-	formatDuration,
 } from "date-fns";
+import { compact } from "lodash-es";
 
-const timew = "/usr/local/bin/timew";
-// try {
-//   timew = await $`which timew`.quiet()
-// } catch (error) {
-//   process.stderr.write(`error getting timew, ${error}`);
-//   process.exit(1)
-// }
-// const timew = stdout.trim()
-// console.log("🚀 ~ executable:", timew)
+const timew = process.env.TIMEW_BIN || "/usr/local/bin/timew";
+const task = process.env.TASK_BIN || "/usr/local/bin/task";
+const shellSummary = process.env.SHELL_SUMMARY || "/bin/zsh";
+
 function getDuration(isoStart, isoEnd) {
 	if (!isoStart) {
 		return "X";
@@ -70,6 +85,9 @@ const totalTime = todayData
 		{ hours: 0, minutes: 0, seconds: 0 },
 	);
 // console.log(data)
+const allTags = await $`${task} _tags`.quiet();
+const tagList = allTags.stdout.split("\n");
+// console.log("🚀 ~ tagList:", tagList);
 const tags = todayData.reduce((prev, curr) => {
 	for (const t of curr.tags) {
 		const newDuration = intervalToDuration({
@@ -78,6 +96,7 @@ const tags = todayData.reduce((prev, curr) => {
 		});
 		const dictVal = prev[t];
 		prev[t] = {
+			type: tagList.includes(t) ? "tag" : "project",
 			hours: dictVal ? dictVal.hours : 0 + newDuration.hours,
 			minutes: dictVal ? dictVal.minutes : 0 + newDuration.minutes,
 			seconds: dictVal ? dictVal.seconds : 0 + newDuration.seconds,
@@ -85,10 +104,24 @@ const tags = todayData.reduce((prev, curr) => {
 	}
 	return prev;
 }, {});
+
 // console.log("🚀 ~ tags:", tags);
-const submenuItems = Object.keys(tags).map(
-	(k) => `🏷️ [${tags[k].hours}h ${tags[k].minutes}m ${tags[k].seconds}s] ${k} `,
+const submenuTags = compact(
+	Object.keys(tags).map((k) =>
+		tags[k].type === "tag"
+			? `🏷️ [${tags[k].hours}h ${tags[k].minutes}m ${tags[k].seconds}s] ${k} `
+			: undefined,
+	),
 );
+// console.log("🚀 ~ submenuTags:", submenuTags);
+const submenuProjects = compact(
+	Object.keys(tags).map((k) =>
+		tags[k].type === "project"
+			? `🛠️ [${tags[k].hours}h ${tags[k].minutes}m ${tags[k].seconds}s] ${k} `
+			: undefined,
+	),
+);
+// console.log("🚀 ~ submenuProjects:", submenuProjects);
 // console.log("🚀 ~ submenuItems:", submenuItems);
 xbar([
 	{
@@ -113,13 +146,17 @@ xbar([
 		}),
 	},
 	{
-		text: `Tags/Projects (${Object.keys(tags).length})`,
-		submenu: submenuItems,
+		text: `Tags (${submenuTags.length})`,
+		submenu: submenuTags,
+	},
+	{
+		text: `Projects (${submenuProjects.length})`,
+		submenu: submenuProjects,
 	},
 	{
 		text: "💻 View Summary",
 		terminal: false,
-		shell: "/Users/timbendt/.dotfiles/bin/iterm",
+		shell: shellSummary,
 		param1: "timew",
 		param2: "summary",
 	},

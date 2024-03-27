@@ -21,7 +21,7 @@
 #'1!d;s/^Context\W.//;s/.\Wwith//'
 CURRENT=$(/usr/local/bin/task context show | sed '1!d;s/^Context..//;s/..with//')
 CONTEXTS=$(/usr/local/bin/task _context)
-echo "☑️ $CURRENT"
+echo "☑️ ${CURRENT:0:10}"
 echo "---"
 
 echo "-none- | shell='/usr/local/bin/task' param1='context' param2='none' terminal=false refresh=true"

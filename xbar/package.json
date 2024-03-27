@@ -2,6 +2,8 @@
   "dependencies": {
     "@sindresorhus/xbar": "^2.1.0",
     "date-fns": "^2.29.3",
-    "zx": "^7.2.3"
-  }
+    "zx": "^7.2.3",
+    "lodash-es": "^4.17.0"
+  },
+  "type": "module"
 }
