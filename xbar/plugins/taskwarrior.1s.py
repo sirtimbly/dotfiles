@@ -17,9 +17,10 @@
 
 #
 # TODO
-# * In a sub-menu (at the bottom) Allow to restart previously completed tasks
-# * Allow to delete tasks (also in a sub-menu?)
-#
+# - [ ] In a sub-menu (at the bottom) Allow to restart previously completed tasks
+# - [ ] Allow to delete tasks (also in a sub-menu?)
+# - [ ] setting for font size
+
 
 import os
 import re
