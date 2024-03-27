@@ -40,12 +40,15 @@ def build_command(t_id, action, refresh=True):
 
     if refresh:
         cmd = cmd + ' refresh=true'
+        cmd = cmd + ' shell=/usr/local/bin/task'
+        cmd = cmd + ' param1=' + str(t_id)
+        cmd = cmd + ' param2=' + action
+        cmd = cmd + ' terminal=true' #change to true for debugging
 
-    cmd = cmd + ' shell=/usr/local/bin/task param1=' + str(t_id) + ' param2='
+    # cmd = cmd + ' shell=/bin/sh param1=/usr/local/bin/task'
+    # cmd = cmd + ' param2=' + str(t_id)
+    # cmd = cmd + ' param3=' + action
 
-    cmd = cmd + action
-
-    cmd = cmd + ' terminal=false' #change to true for debugging
 
     return cmd
 
@@ -218,7 +221,7 @@ def main(argv):
         'completed',
         color_completed,
         False,
-        command='start',
+        command='modify status:pending',
         alternate_command='delete',
         prepend_char="〿 ")
 

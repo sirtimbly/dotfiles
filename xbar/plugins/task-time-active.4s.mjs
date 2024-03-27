@@ -60,7 +60,7 @@ let currentTime;
 try {
 	const activeJson = await $`${timew} get dom.active.json`.quiet();
 	activeData = JSON.parse(activeJson.stdout);
-	currentTime = formatDistanceToNow(parseISO(data.start));
+	currentTime = formatDistanceToNow(parseISO(activeData.start));
 } catch {}
 //{"id":1,"start":"20240326T202105Z","tags":["docs","document trpc configuration","granular.fabric3"]}
 const now = Date.now();
@@ -121,14 +121,19 @@ const submenuProjects = compact(
 			: undefined,
 	),
 );
+const taskText = activeData.tags.filter((t) => !tagList.includes(t)).join(",");
+const taskTags = activeData.tags.filter((t) => tagList.includes(t)).join(", ");
 // console.log("🚀 ~ submenuProjects:", submenuProjects);
 // console.log("🚀 ~ submenuItems:", submenuItems);
 xbar([
 	{
 		text: activeData
-			? `▶️⌚️[${currentTime}] 🏷️ [${data.tags.length}],`
+			? `▶️⌚️[${currentTime}] `
 			: `⌚️[${totalTime.hours}h${totalTime.minutes}m]`,
 	},
+	...(taskText
+		? [separator, `▶️ ${taskText} | color=green`, `🏷️ [${taskTags}]`]
+		: []),
 	separator,
 	`Today ${startOfDay}`,
 	{
@@ -154,7 +159,7 @@ xbar([
 		...(submenuTags.length ? { submenu: submenuTags } : {}),
 	},
 	{
-		text: `Projects (${submenuProjects.length})`,
+		text: `Tasks (${submenuProjects.length})`,
 		...(submenuProjects.length ? { submenu: submenuProjects } : {}),
 	},
 	{
