@@ -133,22 +133,24 @@ const taskText = activeData?.tags
 const taskTags = activeData?.tags
 	?.filter((t) => tagList.includes(t))
 	.join(", ");
-// console.log("🚀 ~ submenuProjects:", submenuProjects);
-// console.log("🚀 ~ submenuItems:", submenuItems);
-const pomodoroDone = isBefore(
-	addMinutes(parseISO(activeData.start), 35),
-	new Date(),
-);
+
+const colors = {
+	positive: "#b9d977",
+	critical: "red",
+};
+const pomodoroDone =
+	activeData &&
+	isBefore(addMinutes(parseISO(activeData.start), 35), new Date());
 xbar([
 	{
 		text: activeData
 			? `${pomodoroDone ? "🍅" : "▶️"} ⌚️[${currentTime}] | color=${
-					pomodoroDone ? "red" : "green"
+					pomodoroDone ? colors.critical : colors.positive
 			  }`
 			: `⌚️[${formatDuration(totalTime, { format: ["hours", "minutes"] })}]`,
 	},
 	...(taskText
-		? [separator, `▶️ ${taskText} | color=green`, `🏷️ [${taskTags}]`]
+		? [separator, `▶️ ${taskText} | color=${colors.positive}`, `🏷️ [${taskTags}]`]
 		: []),
 	separator,
 	`Today ${startOfDay}`,
@@ -163,7 +165,7 @@ xbar([
 						x.start,
 						x.end,
 					)}] ${isoToTime(x.start)}-${isoToTime(x.end)}`,
-					color: isEnded ? "black" : "green",
+					color: isEnded ? "black" : colors.positive,
 					submenu: x.tags.sort((a, b) => b.length - a.length),
 				};
 		  })
