@@ -23,8 +23,6 @@ then
   source ~/.localrc
 fi
 
-
-
 export PATH="$PATH:$DOTFILES/bin"
 
 # all of our zsh files

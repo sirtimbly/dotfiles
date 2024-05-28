@@ -17,21 +17,21 @@ then
   asdf plugin add pnpm
   asdf install pnpm latest
 fi
-exit 0
+
 
 if ! test -d ~/.asdf/plugins/terraform
 then
   asdf plugin add terraform
   asdf install terraform latest
 fi
-exit 0
+
 
 if ! test -d ~/.asdf/plugins/granted
 then
   asdf plugin add granted
   asdf install granted latest
 fi
-exit 0
+
 
 echo "Checking for asdf Go plugin."
 if ! test -d ~/.asdf/plugins/go
@@ -39,4 +39,5 @@ then
   asdf plugin add go
   asdf install go latest
 fi
+
 exit 0

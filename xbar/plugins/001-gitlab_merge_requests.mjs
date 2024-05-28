@@ -81,18 +81,17 @@ const SETTINGS_FILE_PATH = path.resolve(
 	"./.gitlab_merge_requests.settings.json",
 );
 
-const textColor = "black";
-// const textColor = (() => {
-//   switch (process.env.DARK_MODE) {
-//     case "dark":
-//       return "white";
-//     case "light":
-//       return "black";
-//     case "auto":
-//     default:
-//       return isDarkMode ? "white" : "black";
-//   }
-// })();
+// const textColor = "auto";
+const textColor = (() => {
+	switch (process.env.DARK_MODE) {
+		case "dark":
+			return "white";
+		case "light":
+			return "black";
+		default:
+			return isDarkMode ? "white" : "black";
+	}
+})();
 
 // Converts the gitlab status to emoji
 // see https://emojipedia.org/ for customisation

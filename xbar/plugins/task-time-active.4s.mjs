@@ -116,14 +116,16 @@ const tags = timespanData.reduce((prev, curr) => {
 // console.log("🚀 ~ tags:", tags);
 const submenuTags = compact(
 	Object.keys(tags).map((k) =>
-		tags[k].type === "tag" ? `🏷️ [${formatDuration(tags[k])}] ${k} ` : undefined,
+		tags[k].type === "tag"
+			? `🏷️ [${shortenDurationText(formatDuration(tags[k]))}] ${k} `
+			: undefined,
 	),
 );
 // console.log("🚀 ~ submenuTags:", submenuTags);
 const submenuProjects = compact(
 	Object.keys(tags).map((k) =>
 		tags[k].type === "project"
-			? `🛠️ [${formatDuration(tags[k])}] ${k} `
+			? `🛠️ [${shortenDurationText(formatDuration(tags[k]))}] ${k} `
 			: undefined,
 	),
 );
@@ -138,16 +140,27 @@ const colors = {
 	positive: "#b9d977",
 	critical: "red",
 };
+
+function shortenDurationText(text) {
+	return text
+		.replace(" seconds", "s")
+		.replace(" hours", "h")
+		.replace(" minutes", "m");
+}
 const pomodoroDone =
 	activeData &&
 	isBefore(addMinutes(parseISO(activeData.start), 35), new Date());
 xbar([
 	{
 		text: activeData
-			? `${pomodoroDone ? "🍅" : "▶️"} ⌚️[${currentTime}] | color=${
-					pomodoroDone ? colors.critical : colors.positive
-			  }`
-			: `⌚️[${formatDuration(totalTime, { format: ["hours", "minutes"] })}]`,
+			? `${pomodoroDone ? "🍅" : "▶️"} ⌚️[${shortenDurationText(
+					currentTime,
+			  )}] | color=${pomodoroDone ? colors.critical : colors.positive}`
+			: `⌚️[${shortenDurationText(
+					formatDuration(totalTime, {
+						format: ["hours", "minutes"],
+					}),
+			  )}]`,
 	},
 	...(taskText
 		? [separator, `▶️ ${taskText} | color=${colors.positive}`, `🏷️ [${taskTags}]`]
@@ -161,9 +174,8 @@ xbar([
 		? timespanData.map((x) => {
 				const isEnded = !!x.end;
 				return {
-					text: `${isEnded ? "🪵" : "▶️"} [${getDuration(
-						x.start,
-						x.end,
+					text: `${isEnded ? "🪵" : "▶️"} [${shortenDurationText(
+						getDuration(x.start, x.end),
 					)}] ${isoToTime(x.start)}-${isoToTime(x.end)}`,
 					color: isEnded ? "black" : colors.positive,
 					submenu: x.tags.sort((a, b) => b.length - a.length),

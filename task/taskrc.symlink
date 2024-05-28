@@ -79,7 +79,7 @@ report.completed.columns=id,uuid.short,end.relative,due,project,tags,recur.indic
 
 report.next.labels=Deps,P,Project,Recur,S,Due,Until,Description[A],Tags,+🦾,$🥵,Urg,Id,Age
 report.next.columns=depends,priority,project,recur,scheduled.countdown,due.relative,until.remaining,description.count,tags,impact,cost,urgency,id,entry.age
-report.next.sort=project+/,urgency-,start-,tags
+report.next.sort=urgency-,project+/,start-,tags
 
 report.work.labels=Deps,P,Project,Description[A],Tag,Recur,S,Due,Until,+🦾,$🥵,Urg,Age,ID,
 report.work.filter=+PENDING and project:granular and +READY

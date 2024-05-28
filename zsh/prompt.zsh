@@ -72,14 +72,14 @@ battery_status() {
 # Must use Powerline font, for \uE0A0 to render.
 ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}\uE0A0 "
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}!"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$bg[red]%}!"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 ZSH_THEME_RUBY_PROMPT_PREFIX="%{$fg_bold[red]%}‹"
 ZSH_THEME_RUBY_PROMPT_SUFFIX="›%{$reset_color%}"
 
-export PROMPT=$'%{$fg[yellow]%}┌─%{$fg[yellow]%}(%n@%m|$(architecture))[%{$reset_color%}$(directory_name)%{$fg[yellow]%}] ⌚ %{$fg_bold[blue]%}%*%{$reset_color%}$(git_prompt_info)%{$reset_color%}\n%{$fg[yellow]%}└─➤%{$reset_color%} '
+export PROMPT=$'%{$fg[yellow]%}┌─%{$fg[yellow]%}(%n@%m|$(architecture))[%{$reset_color%}$(directory_name)%{$fg[yellow]%}]%{$reset_color%}$(git_prompt_info)%{$reset_color%}\n%{$fg[yellow]%}└─➤%{$reset_color%} '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }

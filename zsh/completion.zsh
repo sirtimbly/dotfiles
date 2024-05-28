@@ -16,3 +16,6 @@ if command -v granted &> /dev/null; then
         granted completion -s zsh
     }
 fi
+
+
+eval "$(jira --completion-script-bash)"
