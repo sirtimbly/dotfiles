@@ -6,8 +6,7 @@
 # using Homebrew.
 
 # Check for Homebrew
-if test "$(arch)" = "i386"
-then
+
 
   if test ! $(which brew)
   then
@@ -31,6 +30,6 @@ then
   # Install all our dependencies with bundle (See Brewfile)
   brew tap homebrew/bundle
   brew bundle --file="$HOME/.dotfiles/homebrew/Brewfile"
-fi
+  sudo brew services start asimov
 
 exit 0

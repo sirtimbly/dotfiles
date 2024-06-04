@@ -1,7 +1,7 @@
 echo "Checking if asdf is installed."
 if ! test -d ~/.asdf
 then
-  sh -c "$(git clone https://github.com/asdf-vm/asdf.git ~/.asdf)" "" --keep-zshrc
+  sh -c "$(git clone https://github.com/asdf-vm/asdf.git --depth 1 --branch v0.14.0 --single-branch ~/.asdf)" "" --keep-zshrc
   . "$HOME/.asdf/asdf.sh"
 fi
 echo "Checking for asdf nodejs plugin."
