@@ -42,6 +42,11 @@ if OS.mac?
     cask "vanilla"
     cask "visual-studio-code"
     cask "vlc"
+    cask "figma"
+    cask "ticktick"
+    cask "slack"
+    cask "xbar"
+    cask "zoom"
 
     # Fonts
     cask "font-fira-code"
