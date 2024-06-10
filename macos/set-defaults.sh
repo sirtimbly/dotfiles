@@ -60,3 +60,6 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 # sudo pmset -a sleep 90
 # Set machine sleep to 5 minutes on battery
 # sudo pmset -b sleep 5
+
+# Make windows draggable with holding cmd+option and clicking anywhere on the window
+defaults write -g NSWindowShouldDragOnGesture YES

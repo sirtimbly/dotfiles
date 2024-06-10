@@ -3,19 +3,14 @@ tap "git-time-metric/gtm"
 tap "github/gh"
 tap "heroku/brew"
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
+# tap "homebrew/cask"
+# tap "homebrew/core"
 tap "homebrew/services"
 # tap "jesseduffield/lazydocker"
 # tap "jesseduffield/lazygit"
 # tap "mutagen-io/mutagen/mutagen"
 
 if OS.mac?
-
-    # taps
-
-    tap "homebrew/cask-fonts"
-    # tap "iandol/adobe-fonts/font-source-code-pro"
 
     # brew "cocoapods"
     brew "trash"
@@ -24,27 +19,33 @@ if OS.mac?
     brew "git"
 
     # Applications
-    # brew "lazydocker"
-    # brew "lazygit"
 
+    cask "aerospace"
+    cask "alfred"
     cask "atext"
+    cask "bartender"
+    cask "choosy"
+    cask "chromium"
     cask "cleanshot"
     cask "colorsnapper"
     cask "dbeaver-community"
     cask "docker"
     cask "dropshare"
-    cask "hermes"
+    cask "firefox"
+    cask "grandperspective"
+    # cask "hermes" #only for Pandora Music
     cask "imageoptim"
-    cask "istat-menus"
+    # cask "istat-menus" #cdn is blocked by zscaler?
     cask "iterm2"
     cask "karabiner-elements"
     cask "loopback"
-    cask "vanilla"
+    # cask "vanilla" #instead of bartender?
     cask "visual-studio-code"
     cask "vlc"
     cask "figma"
     cask "ticktick"
     cask "slack"
+    cask "tripmode"
     cask "xbar"
     cask "zoom"
 
@@ -54,6 +55,7 @@ if OS.mac?
     cask "font-jetbrains-mono"
     cask "font-cascadia-mono"
     cask "font-meslo-for-powerline"
+    cask "font-3270-nerd-font"
 
     # # macOS App Store
     # brew "mas"
@@ -79,6 +81,7 @@ end
 # brew "rbenv"
 # cask "meld"
 # cask "sublime-text"
+cask "logseq"
 brew "asimov"
 brew "awscli"
 brew "buildpacks/tap/pack"
@@ -86,7 +89,6 @@ brew "direnv"
 brew "expect"
 brew "ffmpeg"
 brew "flow"
-brew "font-3270-nerd-font"
 brew "gh"
 brew "git-lfs"
 brew "git-time-metric/gtm/gtm"
