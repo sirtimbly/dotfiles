@@ -122,7 +122,7 @@ def print_output(
 
     # total_number_of_tasks = content_lines[-1]
 
-    content_formatting = ' | color=black size=13 font="JetBrains Mono" '
+    content_formatting = ' | color=black size=13 font="Source Code Pro" '
 
     if print_content:
         print('╔═ ' + cmd + content_formatting)
