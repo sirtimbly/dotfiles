@@ -5,6 +5,11 @@ tap "heroku/brew"
 tap "homebrew/bundle"
 # tap "homebrew/cask"
 # tap "homebrew/core"
+tap "homebrew/cask-fonts"
+tap "homebrew/services"
+tap "iandol/adobe-fonts"
+
+tap "dotenvx/brew"
 tap "homebrew/services"
 # tap "jesseduffield/lazydocker"
 # tap "jesseduffield/lazygit"
@@ -13,6 +18,7 @@ tap "homebrew/services"
 if OS.mac?
 
     # brew "cocoapods"
+
     brew "trash"
     brew "coreutils"
     brew "curl"
@@ -20,9 +26,8 @@ if OS.mac?
 
     # Applications
 
-    cask "aerospace"
+    # don't brew "atext" get legacy https://www.trankynam.com/atext/legacy
     cask "alfred"
-    cask "atext"
     cask "bartender"
     cask "choosy"
     cask "chromium"
@@ -31,6 +36,7 @@ if OS.mac?
     cask "dbeaver-community"
     cask "docker"
     cask "dropshare"
+    # cask "figma" #something wrong with the brew version?
     cask "firefox"
     cask "grandperspective"
     # cask "hermes" #only for Pandora Music
@@ -38,6 +44,8 @@ if OS.mac?
     # cask "istat-menus" #cdn is blocked by zscaler?
     cask "iterm2"
     cask "karabiner-elements"
+    cask "logseq"
+    cask "loop"
     cask "loopback"
     # cask "vanilla" #instead of bartender?
     cask "visual-studio-code"
@@ -46,12 +54,14 @@ if OS.mac?
     cask "ticktick"
     cask "slack"
     cask "tripmode"
+    cask "visual-studio-code"
+    cask "vlc"
     cask "xbar"
     cask "zoom"
 
     # Fonts
     cask "font-fira-code"
-    cask "iandol/adobe-fonts/font-source-code-pro"
+    cask "font-source-code-pro"
     cask "font-jetbrains-mono"
     cask "font-cascadia-mono"
     cask "font-meslo-for-powerline"
@@ -96,6 +106,12 @@ brew "glab"
 brew "gnu-tar"
 brew "go"
 brew "gpg"
+brew "glib"
+brew "dotenvx"
+brew "cffi", link: false
+brew "cmake"
+brew "cryptography", link: false
+brew "go-jira"
 brew "graphicsmagick"
 brew "graphviz"
 brew "htop"

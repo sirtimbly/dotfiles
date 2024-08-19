@@ -43,7 +43,7 @@ def build_command(t_id, action, refresh=True):
         cmd = cmd + ' shell=/usr/local/bin/task'
         cmd = cmd + ' param1=' + str(t_id)
         cmd = cmd + ' param2=' + action
-        cmd = cmd + ' terminal=true' #change to true for debugging
+        cmd = cmd + ' terminal=false' #change to true for debugging
 
     # cmd = cmd + ' shell=/bin/sh param1=/usr/local/bin/task'
     # cmd = cmd + ' param2=' + str(t_id)

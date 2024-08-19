@@ -11,7 +11,8 @@ export DOTFILES="$HOME/.dotfiles"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(taskwarrior asdf git extract colorize vscode)
+# plugins=(taskwarrior asdf git extract colorize vscode)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -29,7 +30,7 @@ export PATH="$PATH:$DOTFILES/bin"
 typeset -U config_files
 config_files=($DOTFILES/**/*.zsh)
 export PROJECTS="$HOME/Documents/_OldDropbx/_Tim/Projects"
-
+export HOMEBREW_BUNDLE_FILE="$HOME/.dotfiles/homebrew/Brewfile"
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
 do
