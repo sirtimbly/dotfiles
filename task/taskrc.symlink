@@ -116,11 +116,11 @@ urgency.user.tag.biz.coefficient=2.0
 urgency.user.tag.maintenance.coefficient=1.1
 
 # Server Config
-taskd.certificate=/Users/timbendt/.task/tim_bendt.cert.pem
-taskd.key=/Users/timbendt/.task/tim_bendt.key.pem
-taskd.ca=/Users/timbendt/.task/ca.cert.pem
-taskd.server=ds923plus.local:53589
-taskd.credentials=Public/Tim Bendt/a0c61d3f-c712-4103-8cfd-74a5bd994c39
+# taskd.certificate=/Users/timbendt/.task/tim_bendt.cert.pem
+# taskd.key=/Users/timbendt/.task/tim_bendt.key.pem
+# taskd.ca=/Users/timbendt/.task/ca.cert.pem
+# taskd.server=ds923plus.local:53589
+# taskd.credentials=Public/Tim Bendt/a0c61d3f-c712-4103-8cfd-74a5bd994c39
 
 # Contexts
 context.work.read=+work and -personal or +granular

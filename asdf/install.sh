@@ -4,40 +4,20 @@ then
   sh -c "$(git clone https://github.com/asdf-vm/asdf.git --depth 1 --branch v0.14.0 --single-branch ~/.asdf)" "" --keep-zshrc
   . "$HOME/.asdf/asdf.sh"
 fi
-echo "Checking for asdf nodejs plugin."
-if ! test -d ~/.asdf/plugins/nodejs
-then
-  asdf plugin add nodejs
-  asdf install nodejs
-  asdf install nodejs latest
-fi
-echo "Checking for asdf pnpm plugin."
-if ! test -d ~/.asdf/plugins/pnpm
-then
-  asdf plugin add pnpm
-  asdf install pnpm latest
-fi
-
-
-if ! test -d ~/.asdf/plugins/terraform
-then
-  asdf plugin add terraform
-  asdf install terraform latest
-fi
-
-
-if ! test -d ~/.asdf/plugins/granted
-then
-  asdf plugin add granted
-  asdf install granted latest
-fi
-
-
-echo "Checking for asdf Go plugin."
-if ! test -d ~/.asdf/plugins/go
-then
-  asdf plugin add go
-  asdf install go latest
-fi
-
+echo "Checking for asdf plugins."
+PLUGINS=$(cat "$HOME/.tool-versions" | cut -d" " -f1);
+for PLUGIN in $PLUGINS; do
+  echo "Adding plugin $PLUGIN";
+  asdf plugin add "$PLUGIN";
+  status=$?;
+  if [ $status -ne 0 ] && [ $status -ne 2 ]; then
+    echo "Install failed with status $status";
+    exit $status;
+  elif [ $status -eq 2 ]; then
+    echo "Install returned status 2, continuing...";
+  else
+    echo "Install succeeded";
+  fi;
+done
+asdf install
 exit 0
