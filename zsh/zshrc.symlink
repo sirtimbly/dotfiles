@@ -95,3 +95,5 @@ export BAT_THEME="Monokai Extended"
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
+# Created by `pipx` on 2024-10-28 03:34:22
+export PATH="$PATH:/Users/tim/.local/bin"
