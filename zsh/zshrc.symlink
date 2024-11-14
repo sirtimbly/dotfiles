@@ -85,3 +85,13 @@ export PATH="$PNPM_HOME:$PATH"
 
 # ASDF
 . "$HOME/.asdf/asdf.sh"
+
+export EDITOR="nvim"
+
+# export ZELLIJ_AUTO_ATTACH=true
+# eval "$(zellij setup --generate-auto-start zsh)"
+export NOTES_DIR=/Users/timbendt/Projects/notes
+export BAT_THEME="Monokai Extended"
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"

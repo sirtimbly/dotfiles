@@ -141,5 +141,5 @@ brew "watch"
 brew "watchman"
 brew "yarn"
 brew "xz"
-
+brew "zellij"
 

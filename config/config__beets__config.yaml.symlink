@@ -1,0 +1,7 @@
+directory: ~/Music/Organized Library
+paths:
+  default: Albums/$albumartist/$album%aunique{}/$track $title
+  singleton: Non-Album/$artist/$title
+  albumtype:broadcast: Broadcasts/$album%aunique{}/$track $title ($artist)
+  albumtype:soundtrack: Soundtracks/$album%aunique{}/$track ($artist) $title
+  comp: Compilations/$album%aunique{}/$track ($artist) $title
