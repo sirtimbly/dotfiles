@@ -89,3 +89,5 @@ precmd() {
   title "zsh" "%m" "%55<...<%~"
   set_prompt
 }
+
+source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme

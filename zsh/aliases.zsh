@@ -14,3 +14,7 @@ alias to="taskopen"
 alias ta="task add"
 alias p="pnpm"
 alias assume='source $(asdf which assume)'
+alias ls="lsd"
+alias ll="lsd -l"
+alias lla="lsd -la"
+alias lstree="lsd -d --tree"

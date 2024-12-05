@@ -60,12 +60,15 @@ if OS.mac?
     cask "zoom"
 
     # Fonts
+
     cask "font-fira-code"
     cask "font-source-code-pro"
     cask "font-jetbrains-mono"
     cask "font-cascadia-mono"
     cask "font-meslo-for-powerline"
     cask "font-3270-nerd-font"
+    cask "font-geist-mono"
+    cask "font-sauce-code-pro-nerd-font"
 
     # # macOS App Store
     # brew "mas"
@@ -93,6 +96,9 @@ end
 # cask "sublime-text"
 cask "logseq"
 brew "asimov"
+brew "atuin"
+brew "lsd"
+brew "nnn"
 brew "awscli"
 brew "buildpacks/tap/pack"
 brew "direnv"
