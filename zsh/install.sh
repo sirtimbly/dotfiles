@@ -8,5 +8,9 @@ fi
 echo "Setting up Atuin"
 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 
+echo "add P10k theme for zsh"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 exit 0
+
 
