@@ -17,5 +17,6 @@ if command -v granted &> /dev/null; then
     }
 fi
 
-
-eval "$(jira --completion-script-bash)"
+if command -v jira &> /dev/null; then
+    eval "$(jira --completion-script-bash)"
+fi
