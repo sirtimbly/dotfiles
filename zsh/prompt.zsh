@@ -90,4 +90,4 @@ precmd() {
   set_prompt
 }
 
-source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
+source $HOME/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
