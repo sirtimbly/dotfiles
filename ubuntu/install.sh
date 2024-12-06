@@ -25,12 +25,16 @@ cargo \
 silversearcher-ag \
 pipx \
 tree \
-tmux
+tmux\
+ripgrep
 
     sudo snap install --classic task;
     sudo snap install --classic go;
     sudo snap install taskwarrior-tui;
 # xclip \
+
+    wget https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-musl_1.1.5_arm64.deb
+    sudo dpkg -i lsd-musl_1.1.5_arm64.deb
 
 
   fi
