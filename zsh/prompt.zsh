@@ -1,4 +1,4 @@
-autoload colors && colors
+# autoload colors && colors
 # cheers, @ehrenmurdick
 # http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
@@ -80,14 +80,14 @@ ZSH_THEME_RUBY_PROMPT_PREFIX="%{$fg_bold[red]%}‹"
 ZSH_THEME_RUBY_PROMPT_SUFFIX="›%{$reset_color%}"
 
 # export PROMPT=$'%{$fg[yellow]%}╭─%{$fg[yellow]%}(%n@%m|$(architecture))[%{$reset_color%}$(directory_name)%{$fg[yellow]%}]%{$reset_color%}$(git_prompt_info)%{$reset_color%}\n%{$fg[yellow]%}╰%{$reset_color%} '
-export PROMPT=$'%{$fg[yellow]%}◇$(architecture): %{$reset_color%}$(git_prompt_info)%{$reset_color%}%{$fg_bold[cyan]%} $(directory_name) ⮁ %{$reset_color%} '
-set_prompt () {
-  export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
-}
+# export PROMPT=$'%{$fg[yellow]%}◇$(architecture): %{$reset_color%}$(git_prompt_info)%{$reset_color%}%{$fg_bold[cyan]%} $(directory_name) ⮁ %{$reset_color%} '
+# set_prompt () {
+#   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
+# }
 
 precmd() {
   title "zsh" "%m" "%55<...<%~"
-  set_prompt
+  # set_prompt
 }
 
 source $HOME/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme

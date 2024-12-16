@@ -132,3 +132,8 @@ context.clients.write=+clients
 
 
 context=work
+sync.server.url=http:\/\/ds923plus.local:8080
+sync.server.client_id=71b6522d-c37f-4f4c-a504-8e4852173a84
+sync.server.clinet_id=71b6522d-c37f-4f4c-a504-8e4852173a84
+sync.encryption_secret=766cdd3a648497e0350f8bee3d5ed1654faef9eda8615c6eab11d8acc9f4311d
+recurrence=on
