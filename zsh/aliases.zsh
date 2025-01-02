@@ -17,4 +17,5 @@ alias assume='source $(asdf which assume)'
 alias ls="lsd"
 alias ll="lsd -l"
 alias lla="lsd -la"
-alias lstree="lsd -d --tree"
+alias tree="lsd --tree"
+alias cat="bat"

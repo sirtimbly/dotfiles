@@ -98,7 +98,7 @@ export PATH="$PNPM_HOME:$PATH"
 # ASDF
 . "$HOME/.asdf/asdf.sh"
 
-export EDITOR="nvim"
+export EDITOR="hx"
 
 # export ZELLIJ_AUTO_ATTACH=true
 # eval "$(zellij setup --generate-auto-start zsh)"

@@ -1,0 +1,17 @@
+[language-server.biome]
+command = "biome" 
+args = ["lsp-proxy"]
+config = { provideFormatter = true }
+required-root-patterns = ["*.ts", "*.tsx", "*.js", "*.jsx", "*.mts", "package.json", "tsconfig.*"]
+
+[[language]]
+name = "typescript"
+auto-format = true
+language-servers = [
+  { name = "typescript-language-server", except-features = [ "format" ] },
+  { name = "biome", only-features = [ "format", "diagnostics", "code-action" ] }
+]
+formatter = { command = "biome", args = [
+  "format",
+  "--stdin-file-path=prd.js",
+] }
