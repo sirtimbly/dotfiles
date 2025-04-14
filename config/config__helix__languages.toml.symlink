@@ -2,6 +2,7 @@
 command = "biome" 
 args = ["lsp-proxy"]
 config = { provideFormatter = true }
+display-messages = true
 required-root-patterns = ["*.ts", "*.tsx", "*.js", "*.jsx", "*.mts", "package.json", "tsconfig.*"]
 
 [[language]]
@@ -9,9 +10,83 @@ name = "typescript"
 auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = [ "format" ] },
-  { name = "biome", only-features = [ "format", "diagnostics", "code-action" ] }
+  { name = "biome", only-features = [ "format", "diagnostics", "code-action" ] },
+  { name = "vscode-eslint-language-server" }
 ]
 formatter = { command = "biome", args = [
   "format",
   "--stdin-file-path=prd.js",
 ] }
+
+[[language]]
+name = "javascript"
+auto-format = true
+language-servers = [
+  { name = "typescript-language-server", except-features = [ "format" ] },
+  { name = "biome", only-features = [ "format", "diagnostics", "code-action" ] },
+  { name = "vscode-eslint-language-server" }
+]
+formatter = { command = "biome", args = [
+  "format",
+  "--stdin-file-path=prd.js",
+] }
+
+[[language]]
+name = "tsx"
+auto-format = true
+language-servers = [
+  { name = "typescript-language-server", except-features = [ "format" ] },
+  "biome",
+  "vscode-eslint-language-server"
+]
+formatter = { command = "biome", args = [
+  "format",
+  "--stdin-file-path=a.tsx",
+] }
+
+[[language]]
+name = "jsx"
+auto-format = true
+language-servers = [
+  { name = "typescript-language-server", except-features = [ "format" ] },
+  { name = "biome", only-features = [ "format", "diagnostics", "code-action" ] },
+  { name = "vscode-eslint-language-server" }
+]
+formatter = { command = "biome", args = [
+  "format",
+  "--stdin-file-path=a.jsx",
+] }
+
+
+
+
+[[language]]
+name = "json"
+language-servers = [{name = "biome"}]
+auto-format = true
+
+[[language]]
+name = "css"
+language-servers = [{name = "biome"}]
+auto-format = true
+
+[[language]]
+name = "html"
+language-servers = [{name = "biome"}]
+auto-format = true
+
+[[language]]
+name = "yaml"
+language-servers = [{name = "biome"}]
+auto-format = true
+
+[[language]]
+name = "toml"
+language-servers = [{name = "biome"}]
+auto-format = true
+
+[[language]]
+name = "markdown"
+language-servers = [{name = "biome"}]
+auto-format = true
+
