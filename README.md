@@ -1,5 +1,7 @@
 # dotfiles
 
+These configuration files are useful for setting up any new computer from scratch. I mostly use macOS, but have a few linux clients and servers scattered around. So there are some logical switches to do different things between different platforms. My preferences are baked in (of course) and I wouldn't say this is "configurable" as much as it is "modular". There is plenty of stuff left behind in here that I don't actually use anymore, but I have tried to maintain and prune the list of `brew` packages a couple times recently.
+
 Forked from [https://github.com/holman/dotfiles/](https://github.com/holman/dotfiles/)
 
 ## topical

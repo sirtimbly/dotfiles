@@ -32,7 +32,7 @@
         branch = auto
         ui = true
 [core]
-        editor = nvim
+        editor = hx
         pager = delta
 [merge]
     conflictstyle = diff3

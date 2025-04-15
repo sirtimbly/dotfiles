@@ -45,8 +45,6 @@ brew "arduino-cli"
 brew "asimov"
 # Official Amazon AWS command-line interface
 brew "awscli"
-# Clone of cat(1) with syntax highlighting and Git integration
-brew "bat"
 # Bash scripts that integrate bat with various command-line tools
 brew "bat-extras"
 # Core application library for C
@@ -57,8 +55,6 @@ brew "cffi", link: false
 brew "cmake"
 # Dependency manager for Cocoa projects
 brew "cocoapods"
-# Platform built on V8 to build network applications
-brew "node"
 # Contentful command-line tools
 brew "contentful-cli"
 # GNU File, Shell, and Text utilities
@@ -177,8 +173,6 @@ brew "lazydocker"
 brew "lazygit"
 # Access DVDs as block devices without the decryption
 brew "libdvdcss"
-# Count lines of code quickly
-brew "loc"
 # Clone of ls with colorful output, file type icons, and more
 brew "lsd"
 # Text-based web browser
