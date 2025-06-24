@@ -1,0 +1,107 @@
+wtf:
+  colors:
+    border:
+      focusable: darkslateblue
+      focused: orange
+      normal: gray
+  grid:
+    columns: [0, 12, 12, 12]
+    rows: [4, 4, 4, 4, 4, 4, 4, 4, 4]
+  refreshInterval: 1
+  mods:
+    jira:
+      focuschar: 1
+      colors:
+      rows:
+        even: "lightblue"
+        odd: "white"
+      domain: "https://corteva-research.atlassian.net"
+      email: "timothy.bendt@corteva.com"
+      username: "timothy.bendt@corteva.com"
+      enabled: true
+      jql: "resolution = unresolved ORDER BY priority asc, created"
+      verifyServerCertificate: true
+      refreshInterval: 15m
+      position:
+        top: 0
+        left: 0
+        height: 4
+        width: 1
+    gitlab:
+      enabled: true
+      focuschar: 2
+      position:
+        top: 4
+        left: 0
+        height: 4
+        width: 1
+      projects:
+        - "granular/fabric/fabric3"
+      refreshInterval: 2m
+      username: "timbendt"
+      domain: "https://gitlab.research.corteva.com"
+    # weathercurl:
+    #   type: "cmdrunner"
+    #   args: ["'wttr.in/Palmer+Lake?u&format=%c+🌡️%t+%w+😓%h+☔%p'"]
+    #   cmd: "curl"
+    #   position:
+    #     top: 120
+    #     left: 1
+    #     height: 1
+    #     width: 3
+    #   refreshInterval: 120
+    clocks_a:
+      colors:
+        rows:
+          even: "lightblue"
+          odd: "white"
+      enabled: true
+      locations:
+        Pacific: "America/Los Angeles"
+        Mountain: "America/Denver"
+        Central: "America/Chicago"
+        East: "America/New York"
+        Peru: "America/Lima"
+        GMT: "Europe/London"
+      position:
+        top: 0
+        left: 1
+        height: 2
+        width: 3
+      refreshInterval: 15
+      sort: "alphabetical"
+      title: ""
+      type: "clocks"
+    ipinfo:
+      colors:
+        name: "lightblue"
+        value: "white"
+      enabled: true
+      position:
+        top: 2
+        left: 1
+        height: 2
+        width: 3
+      refreshInterval: 150
+    power:
+      title: "⚡️"
+      enabled: true
+      position:
+        top: 4
+        left: 1
+        height: 2
+        width: 3
+      refreshInterval: 15
+    resourceusage:
+      cpuCombined: true
+      enabled: true
+      refreshInterval: 1s
+      showCPU: true
+      showMem: true
+      showSwp: true
+      position:
+        top: 6
+        left: 1
+        height: 2
+        width: 3
+
