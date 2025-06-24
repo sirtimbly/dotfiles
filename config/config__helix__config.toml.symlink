@@ -1,4 +1,4 @@
-theme = "onedark"
+theme = "monokai"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -8,3 +8,6 @@ select = "underline"
 [editor.file-picker]
 hidden = false
 
+[keys.normal]
+"A-j" = [ "extend_to_line_bounds", "delete_selection", "paste_after" ]
+"A-k" = [ "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before" ]
