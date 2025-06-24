@@ -20,3 +20,6 @@ fi
 if test ! $(which jira); then
     eval "$(jira --completion-script-bash)"
 fi
+if test ! $(which glab); then
+    eval "$(glab completion)"
+fi
