@@ -1,7 +1,8 @@
 
 
-# zmodload zsh/zprof
+zmodload zsh/zprof
 
+eval "$(starship init zsh)"
 
 # Path to your oh-my-zsh installation.
 zstyle ':omz:update' frequency 30
@@ -12,15 +13,15 @@ export DOTFILES="$HOME/.dotfiles"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(taskwarrior asdf git extract colorize vscode)
-plugins=(git)
-source $ZSH/oh-my-zsh.sh
+# plugins=(git)
+# source $ZSH/oh-my-zsh.sh
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
@@ -55,9 +56,9 @@ done
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}
@@ -100,10 +101,11 @@ export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_installed
 . "$HOME/.asdf/asdf.sh"
 
 export EDITOR="hx"
-
+export WTF_GITLAB_TOKEN="$GITLAB_TOKEN"
 # export ZELLIJ_AUTO_ATTACH=true
 # eval "$(zellij setup --generate-auto-start zsh)"
 export NOTES_DIR=/Users/timbendt/Projects/notes
+export HIMALAYA_CONFIG=/Users/timbendt/.config/himalaya/config.toml
 export BAT_THEME="Monokai Extended"
 . "$HOME/.atuin/bin/env"
 
@@ -112,5 +114,6 @@ eval "$(atuin init zsh)"
 export PATH="$PATH:/Users/tim/.local/bin"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-# zprof
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+NVIM_LISTEN_ADDRESS=/tmp/nvim-server
+zprof
