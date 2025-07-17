@@ -3,7 +3,11 @@ folder_with_datafiles = ~/.config/calcure
 calcurse_todo_file = ~/.local/share/calcurse/todo
 calcurse_events_file = ~/.local/share/calcurse/apts
 taskwarrior_folder = ~/.task
-ics_event_files = ~/Developer/outlook-to-ics/outlook_events.ics
+ics_event_files = ~/Developer/gtd-terminal-tools/output_ics/outlook_eve
+nts_latest.ics,https://calendar.google.com/calendar/ical/sirtimbly%40gmail.com/pr
+ivate-26ee318a18643b1ef95720edaef28127/basic.ics,https://calendar.google.com/cale
+ndar/ical/ecueqfuiqq601b7am7orqvuo1o%40group.calendar.google.com/private-69b3ce7b
+91fbfdaa88d1e3bdf2625210/basic.ics
 language = en
 default_view = calendar
 default_calendar_view = monthly

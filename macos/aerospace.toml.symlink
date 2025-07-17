@@ -12,10 +12,21 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
+    'exec-and-forget sketchybar'
+]
 
+automatically-unhide-macos-hidden-apps = true
+
+
+# Notify Sketchybar about workspace change
+# exec-on-workspace-change = ['/bin/bash', '-c',
+    # 'sketchybar --trigger aerospace_workspace_change'
+# ]
+on-focus-changed = "exec-and-forget sketchybar --trigger aerospace_workspace_change"
 # Start AeroSpace at login
-start-at-login = false
+start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -54,16 +65,17 @@ outer.top =        4
 outer.right =      4
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
-[exec]                   # Again, you don't need to copy all config sections to your config.
-inherit-env-vars = true  # If you don't touch "exec" section,
-[exec.env-vars]          # it will fallback to "default-config.toml"
-PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
+# [exec]                   # Again, you don't need to copy all config sections to your config.
+# inherit-env-vars = true  # If you don't touch "exec" section,
+# [exec.env-vars]          # it will fallback to "default-config.toml"
+# PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
 [mode.main.binding]
-
+   cmd-h = [] # Disable "hide application"
+	cmd-alt-h = [] # Disable "hide others"
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -107,34 +119,34 @@ alt-shift-equal = 'resize smart +80'
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
-alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
-alt-7 = 'workspace 7'
-alt-8 = 'workspace 8'
-alt-9 = 'workspace 9'
-alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-alt-b = 'workspace B'
+# alt-4 = 'workspace 4'
+# alt-5 = 'workspace 5'
+# alt-6 = 'workspace 6'
+# alt-7 = 'workspace 7'
+# alt-8 = 'workspace 8'
+# alt-9 = 'workspace 9'
+# alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
+# alt-b = 'workspace B'
 alt-c = 'workspace C'
 alt-d = 'workspace D'
 alt-e = 'workspace E'
 alt-f = 'workspace F'
 alt-g = 'workspace G'
-alt-i = 'workspace I'
-alt-m = 'workspace M'
-alt-n = 'workspace N'
-alt-o = 'workspace O'
-alt-p = 'workspace P'
-alt-q = 'workspace Q'
-alt-r = 'workspace R'
-alt-s = 'workspace S'
-alt-t = 'workspace T'
-alt-u = 'workspace U'
-alt-v = 'workspace V'
-alt-w = 'workspace W'
-alt-x = 'workspace X'
-alt-y = 'workspace Y'
-alt-z = 'workspace Z'
+# alt-i = 'workspace I'
+# alt-m = 'workspace M'
+# alt-n = 'workspace N'
+# alt-o = 'workspace O'
+# alt-p = 'workspace P'
+# alt-q = 'workspace Q'
+# alt-r = 'workspace R'
+# alt-s = 'workspace S'
+# alt-t = 'workspace T'
+# alt-u = 'workspace U'
+# alt-v = 'workspace V'
+# alt-w = 'workspace W'
+# alt-x = 'workspace X'
+# alt-y = 'workspace Y'
+# alt-z = 'workspace Z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'

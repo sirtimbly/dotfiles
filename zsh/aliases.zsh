@@ -1,12 +1,12 @@
 alias reload!='. ~/.zshrc'
 
 alias cls='clear' # Good 'ol Clear Screen command
-alias y="yarn"
 alias g="git"
 alias mux="tmuxinator"
 alias lzg="lazygit"
 alias glz="lazygit"
 alias ci="glab ci status -l"
+alias cii="glab ci view -w"alias hm="himalaya message"
 alias t="task"
 alias tui="taskwarrior-tui"
 alias tt="taskwarrior-tui"
@@ -21,4 +21,3 @@ alias tree="lsd --tree"
 alias cat="bat"
 alias email="nvim --listen $NVIM_LISTEN_ADDRESS +Himalaya"
 alias h="himalaya"
-alias hm="himalaya message"

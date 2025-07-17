@@ -63,3 +63,6 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
 # Make windows draggable with holding cmd+option and clicking anywhere on the window
 defaults write -g NSWindowShouldDragOnGesture YES
+
+# Fast Window opening
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false

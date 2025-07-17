@@ -1,4 +1,4 @@
-theme = "monokai"
+theme = "ayu_evolve"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -9,5 +9,20 @@ select = "underline"
 hidden = false
 
 [keys.normal]
-"A-j" = [ "extend_to_line_bounds", "delete_selection", "paste_after" ]
-"A-k" = [ "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before" ]
+"Cmd-j" = [ "extend_to_line_bounds", "delete_selection", "paste_after" ]
+"Cmd-k" = [ "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before" ]
+"C-/" = [ "toggle_line_comments" ]
+"C-s" = ":write" # Ctrl and 's' to write
+"Cmd-s" = ":write" # Cmd or Win or Meta and 's' to write
+"Cmd-r" = ":reload-all"
+"C-A-s" = ":write-all"
+"$" = "goto_line_end"
+0 = "goto_line_start"
+G = "goto_file_end"
+C-e = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+  ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+]

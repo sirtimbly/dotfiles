@@ -34,15 +34,14 @@
 [core]
         editor = hx
         pager = delta
-[merge]
-    conflictstyle = diff3
-        # tool = vscode
-# [mergetool "vscode"]
-        # cmd = code --wait $MERGED
+
+
+[mergetool "vscode"]
+        cmd = code --wait $MERGED
+
 [mergetool]
         keepBackup = false
-[diff]
-        # tool = vscode
+
 # [difftool "vscode"]
         # cmd = code --wait --diff $LOCAL $REMOTE
 # [difftool]
@@ -67,4 +66,5 @@
 [delta]
     navigate = true  # use n and N to move between diff sections
     dark = true      # or light = true, or omit for auto-detection
-    side-by-side = true
+    line-numbers = true
+	hyperlinks = true
