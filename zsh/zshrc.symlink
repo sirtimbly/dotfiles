@@ -92,16 +92,16 @@ export PATH="$PNPM_HOME:$PATH"
 
 
 export EDITOR="hx"
-export NOTES_DIR=/Users/timbendt/Projects/notes
-export HIMALAYA_CONFIG=/Users/timbendt/.config/himalaya/config.toml
+export NOTES_DIR="$HOME/Projects/notes"
+export HIMALAYA_CONFIG="$HOME/.config/himalaya/config.toml"
 export BAT_THEME="Monokai Extended"
 
 # Created by `pipx` on 2024-10-28 03:34:22
 export PATH="$PATH:/Users/tim/.local/bin"
 
-NVIM_LISTEN_ADDRESS=/tmp/nvim-server
+export NVIM_LISTEN_ADDRESS=/tmp/nvim-server
 
-
+export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/config/ripgrep_config"
 
 
 # ------------FZF--------------

@@ -1,8 +1,19 @@
+tap "buildpacks/tap"
+tap "git-time-metric/gtm"
+tap "github/gh"
+tap "heroku/brew"
+tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
+tap "homebrew/services"
+tap "iandol/adobe-fonts"
+
+tap "dotenvx/brew"
+tap "homebrew/services"
+
 tap "adoptopenjdk/openjdk"
 tap "armmbed/formulae"
 tap "buildpacks/tap"
 tap "egoist/tap"
-tap "felixkratz/formulae"
 tap "git-time-metric/gtm"
 tap "github/gh"
 tap "heroku/brew"
@@ -13,26 +24,17 @@ tap "iandol/adobe-fonts"
 tap "jesseduffield/lazydocker"
 tap "jesseduffield/lazygit"
 tap "jez/formulae"
-tap "konradsz/igrep", "https://github.com/konradsz/igrep.git"
 tap "moonrepo/tap"
 tap "mrkai77/cask"
 tap "nikitabobko/tap"
 tap "rockymadden/rockymadden"
-tap "shshemi/tabiew"
-tap "sst/tap"
-tap "valkyrie00/bbrew"
 tap "wip-tech/wip"
 tap "wtfutil/wtfutil"
-# Core application library for C
-brew "glib"
-# GNU Transport Layer Security (TLS) Library
-brew "gnutls"
-# GNU Pretty Good Privacy (PGP) package
-brew "gnupg"
+
+# Shell history
+brew "atuin"
 # General-purpose data compression with high compression ratio
 brew "xz"
-# Email client that runs in your terminal
-brew "aerc"
 # New file format for still image compression
 brew "jpeg-xl"
 # Codec library for encoding and decoding AV1 video streams
@@ -41,16 +43,14 @@ brew "aom"
 brew "arduino-cli"
 # Automatically exclude development dependencies from Time Machine backups
 brew "asimov"
-# Improved shell history for zsh, bash, fish and nushell
-brew "atuin"
 # Official Amazon AWS command-line interface
 brew "awscli"
-# C library of Git core methods that is re-entrant and linkable
-brew "libgit2", link: false
-# Clone of cat(1) with syntax highlighting and Git integration
-brew "bat"
 # Bash scripts that integrate bat with various command-line tools
 brew "bat-extras"
+# Core application library for C
+brew "glib"
+# C Foreign Function Interface for Python
+brew "cffi", link: false
 # Cross-platform make
 brew "cmake"
 # Dependency manager for Cocoa projects
@@ -59,6 +59,8 @@ brew "cocoapods"
 brew "contentful-cli"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
+# Cryptographic recipes and primitives for Python
+brew "cryptography", link: false
 # Load/unload environment variables based on $PWD
 brew "direnv"
 # Text processing system for reStructuredText
@@ -81,6 +83,8 @@ brew "esptool", link: false
 brew "expect"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
 # OpenType text shaping engine
 brew "harfbuzz"
 # Subtitle renderer for the ASS/SSA subtitle format
@@ -97,8 +101,6 @@ brew "ffmpeg"
 brew "fx"
 # Command-line fuzzy finder written in Go
 brew "fzf"
-# Fuzzy finder with preview window for make, pnpm, yarn & just
-brew "fzf-make"
 # Library for encoding and decoding .avif files
 brew "libavif"
 # Graphics library to dynamically manipulate images
@@ -125,6 +127,8 @@ brew "glow"
 brew "gnu-sed"
 # GNU version of the tar archiving utility
 brew "gnu-tar"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
 # Simple jira command-line client in Go
 brew "go-jira"
 # Generate introspection data for GObject libraries
@@ -148,7 +152,9 @@ brew "groff"
 # GNU Ubiquitous Intelligent Language for Extensions
 brew "guile"
 # Post-modern modal text editor
-brew "helix", args: ["HEAD"]
+brew "helix"
+# CLI email client written in Rust
+brew "himalaya"
 # Improved top (interactive process viewer)
 brew "htop"
 # User-friendly cURL replacement (command-line HTTP client)
@@ -159,8 +165,6 @@ brew "libraw"
 brew "imagemagick"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# CLI calendar application
-brew "khal"
 # LastPass command-line interface tool
 brew "lastpass-cli"
 # Lazier way to manage everything docker
@@ -169,8 +173,6 @@ brew "lazydocker"
 brew "lazygit"
 # Access DVDs as block devices without the decryption
 brew "libdvdcss"
-# Count lines of code quickly
-brew "loc"
 # Clone of ls with colorful output, file type icons, and more
 brew "lsd"
 # Text-based web browser
@@ -183,8 +185,6 @@ brew "magic-wormhole"
 brew "mas"
 # Menu-driven communications program
 brew "minicom"
-# Polyglot runtime manager (asdf rust clone)
-brew "mise"
 # Collection of tools that nobody wrote when UNIX was young
 brew "moreutils"
 # Media player based on MPlayer and mplayer2
@@ -203,27 +203,14 @@ brew "openvino"
 brew "pandoc"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
-# PDF rendering library (based on the xpdf-3.0 code base)
-brew "poppler"
 # Theme for zsh
 brew "powerlevel10k"
 # Easily download, build, install, upgrade, and uninstall Python packages
 brew "python-setuptools"
 # Python interface to Tcl/Tk
 brew "python-tk@3.12"
-# Interpreted, interactive, object-oriented programming language
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# Install various Ruby versions and implementations
-brew "ruby-build"
-# Static analysis and lint tool, for (ba)sh scripts
-brew "shellcheck"
-# Terminal based presentation tool
-brew "slides"
-# Cross-shell prompt for astronauts
-brew "starship"
-# TUI to view and query tabular files (CSV,TSV, Parquet, etc.)
-brew "tabiew"
 # Feature-rich console based todo list manager
 brew "task"
 # Shell wrapper for Taskwarrior commands
@@ -242,20 +229,11 @@ brew "tidy-html5"
 brew "tiger-vnc"
 # Command-line time tracking application
 brew "timewarrior"
-# Simplified and community-driven man pages
-brew "tldr", link: false
-# Official tldr client written in Rust
-brew "tlrc"
 # Terminal multiplexer
-brew "tmux"
-# Manage complex tmux sessions easily
-brew "tmuxinator"
 # CLI tool that moves files or folder to the trash
-brew "trash", link: true
+brew "trash"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
-# Language Server Protocol implementation for TypeScript wrapping tsserver
-brew "typescript-language-server"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
 # Watch files and take action when they change
@@ -266,118 +244,138 @@ brew "woff2"
 brew "wtfutil"
 # Access X11 clipboards from the command-line
 brew "xclip"
-# JavaScript package manager
-brew "yarn"
-# Blazing fast terminal file manager written in Rust, based on async I/O
-brew "yazi"
-# Process YAML, JSON, XML, CSV and properties documents from the CLI
-brew "yq"
 # Pluggable terminal workspace, with terminal multiplexer as the base feature
 brew "zellij"
-# Shell extension to navigate your filesystem faster
-brew "zoxide"
 brew "armmbed/formulae/arm-none-eabi-gcc"
 # A CLI for building apps using Cloud Native Buildpacks
 brew "buildpacks/tap/pack"
 # An npm scripts runner written in Rust.
 brew "egoist/tap/dum"
-# A window border system for macOS
-brew "felixkratz/formulae/borders"
-# Custom macOS statusbar with shell plugin, interaction and graph support
-brew "felixkratz/formulae/sketchybar"
 # Simple, seamless, lightweight time tracking for all your git projects
 brew "git-time-metric/gtm/gtm"
+
 # Convert Pandoc Markdown-style footnotes into sidenotes
 brew "jez/formulae/pandoc-sidenote"
-# Interactive Grep
-brew "konradsz/igrep/igrep"
+
 brew "rockymadden/rockymadden/somafm-cli"
-# The AI coding agent built for the terminal.
-brew "sst/tap/opencode"
-# A simple TUI tool to make your homebrew bold.
-brew "valkyrie00/bbrew/bbrew"
-# AeroSpace is an i3-like tiling window manager for macOS
-cask "aerospace"
-# Application launcher and productivity software
-cask "alfred"
-# Tool to replace abbreviations while typing
-cask "atext"
-# Menu bar icon organiser
-cask "bartender"
-# Open source IDE for exploring and testing APIs
-cask "bruno"
-# Open links in any browser
-cask "choosy"
-# Free and open-source web browser
-cask "chromium"
-# Screen capturing tool
-cask "cleanshot"
-# Colour picker
-cask "colorsnapper"
+
 # Universal database tool and SQL client
 cask "dbeaver-community"
 # App to build and share containerised applications and microservices
 cask "docker"
-cask "docker-desktop"
-# File sharing solution
-cask "dropshare"
+
 # Collaborative team software
 cask "figma"
 # Web browser
 cask "firefox"
-cask "font-3270-nerd-font"
-cask "font-cascadia-mono"
-cask "font-fira-code"
-cask "font-jetbrains-mono"
-cask "font-maple-mono"
-cask "font-meslo-for-powerline"
-cask "font-sauce-code-pro-nerd-font"
-cask "font-source-code-pro"
+
 # GIT client
 cask "fork"
 # Set of tools to manage resources and applications hosted on Google Cloud
-cask "gcloud-cli"
-# Terminal emulator that uses platform-native UI and GPU acceleration
-cask "ghostty"
-# Graphically shows disk usage within a file system
-cask "grandperspective"
-# HighFlux makes software development simpler, more enjoyable, and more productive
-cask "highflux"
-# Tool to optimise images to a smaller size
-cask "imageoptim"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
-# Keyboard customiser
-cask "karabiner-elements"
-# Privacy-first, open-source platform for knowledge sharing and management
-cask "logseq"
-# Window manager
-cask "loop"
-# Cable-free audio router
-cask "loopback"
-# Visual diff and merge tool
-cask "meld"
-# Replacement for Docker Desktop
-cask "orbstack"
-# Quick Look generator for Markdown files
-cask "qlmarkdown"
-# Plain-text file notepad and todo-list manager
-cask "qownnotes"
-# Quick Look plugin for JSON files
-cask "quicklook-json"
-# Team communication and collaboration software
-cask "slack"
-# Text editor for code, markup and prose
-cask "sublime-text"
-# To-do & task list manager
-cask "ticktick"
-# Control your data usage on slow or expensive networks
-cask "tripmode"
-# Open-source code editor
-cask "visual-studio-code"
-# Multimedia player
-cask "vlc"
-# View output from scripts in the menu bar
-cask "xbar"
-# Video communication and virtual meeting platform
-cask "zoom"
+cask "google-cloud-sdk"
+
+
+
+if OS.mac?
+    # AeroSpace is an i3-like tiling window manager for macOS
+    cask "aerospace"
+    # Application launcher and productivity software
+    cask "alfred"
+    # Tool to replace abbreviations while typing
+    cask "atext"
+    # Menu bar icon organiser
+    cask "bartender"
+    # Open links in any browser
+    cask "choosy"
+    # Free and open-source web browser
+    cask "chromium"
+    # Screen capturing tool
+    cask "cleanshot"
+    # Colour picker
+    cask "colorsnapper"
+    # File sharing solution
+    cask "dropshare"
+    # Graphically shows disk usage within a file system
+    cask "grandperspective"
+    # HighFlux makes software development simpler, more enjoyable, and more productive
+    cask "highflux"
+    # Tool to optimise images to a smaller size
+    cask "imageoptim"
+    # Terminal emulator as alternative to Apple's Terminal app
+    cask "iterm2"
+    # Keyboard customiser
+    cask "karabiner-elements"
+    # Privacy-first, open-source platform for knowledge sharing and management
+    cask "logseq"
+    # Window manager
+    cask "loop"
+    # Cable-free audio router
+    cask "loopback"
+    # Visual diff and merge tool
+    cask "meld"
+    # Quick Look generator for Markdown files
+    cask "qlmarkdown"
+    # Quick Look plugin for JSON files
+    cask "quicklook-json"
+    # Team communication and collaboration software
+    cask "slack"
+    # Text editor for code, markup and prose
+    cask "sublime-text"
+    # To-do & task list manager
+    cask "ticktick"
+    # Control your data usage on slow or expensive networks
+    cask "tripmode"
+    # Open-source code editor
+    cask "visual-studio-code"
+    # Multimedia player
+    cask "vlc"
+    # View output from scripts in the menu bar
+    cask "xbar"
+    # Video communication and virtual meeting platform
+    cask "zoom"
+    mas "Affinity Designer", id: 824171161
+    mas "Broadcasts", id: 1469995354
+    mas "Drafts", id: 1435957248
+    mas "GoPro Player", id: 1460836908
+    mas "Hand Mirror", id: 1502839586
+    mas "Keynote", id: 409183694
+    mas "Microsoft OneNote", id: 784801555
+    mas "Microsoft Outlook", id: 985367838
+    mas "Microsoft PowerPoint", id: 462062816
+    mas "Mobile Mouse Server", id: 412814284
+    mas "Muse", id: 1501563902
+    mas "Numbers", id: 409203825
+    mas "Pages", id: 409201541
+    mas "Pixelmator Pro", id: 1289583905
+    mas "Regex Craft", id: 6477337713
+    mas "ServerCat", id: 1501532023
+    mas "Soulver 2", id: 413965349
+    mas "The Clock", id: 488764545
+    mas "ViRE", id: 1550861119
+    mas "WiFi Signal", id: 525912054
+    mas "Xcode", id: 497799835
+    # Fonts
+
+
+    cask "font-3270-nerd-font"
+    cask "font-cascadia-mono"
+    cask "font-fira-code"
+    cask "font-jetbrains-mono"
+    cask "font-maple-mono"
+    cask "font-meslo-for-powerline"
+    cask "font-sauce-code-pro-nerd-font"
+    cask "font-source-code-pro"
+
+
+end
+
+# brew "contentful-cli"
+# brew "heroku/brew/heroku"
+# brew "loc" #replaced with scc
+# brew "mutagen"
+# brew "python"
+# brew "rbenv"
+# cask "meld"
+# cask "sublime-text"
+
+
