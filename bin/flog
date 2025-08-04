@@ -6,31 +6,77 @@ if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
     exit 1
 fi
 
+# Function to extract GitLab base URL from git remote origin URL
+# Handles both HTTPS and SSH formats and any domain/subdomain structure
+get_gitlab_base_url() {
+    local remote_url
+    remote_url=$(git config --get remote.origin.url)
+
+    # Regex for HTTPS: https://any.domain.com/group/project.git
+    # Captures: 1=domain, 2=group/project
+    if [[ "$remote_url" =~ ^https?://([^/]+)/([^/]+/[^/]+)\.git$ ]]; then
+        local domain="${BASH_REMATCH[1]}"
+        local path="${BASH_REMATCH[2]}"
+        echo "https://${domain}/${path}"
+    # Regex for SSH: git@any.domain.com:group/project.git
+    # The domain part can have multiple subdomains separated by dots.
+    # The path part can also have multiple slashes for subgroups.
+    # Captures: 1=domain, 2=group/project
+    elif [[ "$remote_url" =~ ^git@([a-zA-Z0-9.-]+):([a-zA-Z0-9./-]+)\.git$ ]]; then
+        local domain="${BASH_REMATCH[1]}"
+        local path="${BASH_REMATCH[2]}"
+        # Ensure path does not start with an extra slash if it's already included by capture group
+        echo "https://${domain}/${path}"
+    else
+        # Handle other potential GitLab URLs or error cases
+        echo ""
+    fi
+}
+gitlab_base_url=$(get_gitlab_base_url)
+
+if [ -z "$gitlab_base_url" ]; then
+    echo "Warning: Could not determine GitLab base URL from 'remote.origin.url'."
+    echo "The commit URL will not be available."
+fi
+
 # Step 1: Select a file using fzf with a preview window
-# Uses 'bat' for syntax-highlighted preview, falls back to 'cat' if not available.
 PREVIEW_CMD="bat --style=numbers --color=always --line-range :500 {} || cat {}"
 selected_file=$(git ls-files | fzf --height 80% --layout=reverse --preview "$PREVIEW_CMD" --preview-window=right:50%)
 
-# Exit if no file was selected (e.g., user pressed Esc)
+# Exit if no file was selected
 if [ -z "$selected_file" ]; then
     echo "No file selected."
     exit 0
 fi
 
-# Step 2: Generate the commit log for the file and pipe it to fzf for interactive browsing
-# --follow: Continues listing the history of a file beyond renames
-# --pretty=...: Creates a rich, colored, and parsable log format
-#
-# Step 3: Use fzf's preview to show the diff for the selected commit and file
-# --no-sort: Respects the chronological order from git log
-# --reverse: Puts the prompt at the top and results at the bottom (most recent at the bottom)
-# --preview: Extracts the commit hash (first field) and shows the diff for that file
-git log --color=always \
-    --pretty=format:"%C(yellow)%h %C(reset)%s %C(blue)(%cr) %C(bold green)<%an>%C(reset)" \
-    --follow -- "$selected_file" | \
-fzf --ansi --no-sort --reverse --height 80% \
-    --header "Commits for '$selected_file' (most recent at bottom)" \
-    --preview "git show --color=always \$(echo {} | awk '{print \$1}') -- \"$selected_file\"" \
-    --preview-window=right:60%
+# Step 2 & 3: Generate the commit log, pipe to fzf, and show diff + URL in preview
+# Store the selected line in a variable for post-processing
+selected_line=$(
+    git log --color=always \
+        --pretty=format:"%C(yellow)%h %C(reset)%s %C(blue)(%cr) %C(bold green)<%an>%C(reset)" \
+        --follow -- "$selected_file" | \
+    fzf --ansi --no-sort --reverse --height 80% \
+        --header "Commits for '$selected_file' (most recent at bottom)" \
+        --preview-window=right:60% \
+        --preview "
+            commit_hash=\$(echo {} | awk '{print \$1}');
+            git show --color=always \$commit_hash -- \"$selected_file\";
+            if [ -n \"$gitlab_base_url\" ]; then
+                echo -e \"\n--- GitLab URL (for preview only) ---\";
+                echo \"${gitlab_base_url}/-/commit/\$commit_hash\";
+            fi
+        "
+)
 
+# Check if a commit line was selected
+if [ -n "$selected_line" ]; then
+    # Extract the commit hash from the selected line
+    commit_hash=$(echo "$selected_line" | awk '{print $1}')
 
+    echo "Selected Commit: $commit_hash"
+    if [ -n "$gitlab_base_url" ]; then
+        echo "GitLab URL: ${gitlab_base_url}/-/commit/$commit_hash"
+    fi
+else
+    echo "No commit selected."
+fi
