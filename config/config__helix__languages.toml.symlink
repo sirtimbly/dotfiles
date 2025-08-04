@@ -1,7 +1,6 @@
 [language-server.biome]
 command = "biome" 
 args = ["lsp-proxy"]
-required-root-patterns = ["*.ts", "*.tsx", "*.js", "*.jsx", "*.mts", "package.json", "tsconfig.*"]
 
 [language-server.vscode-eslint-language-server]
 command = "vscode-eslint-language-server"
@@ -13,7 +12,7 @@ args = ["--stdio"]
 
 [[language]]
 name = "typescript"
-auto-format = true
+# auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = [ "format" ] },
   { name = "biome", only-features = [ "format" ] },
@@ -22,7 +21,7 @@ language-servers = [
 
 [[language]]
 name = "javascript"
-auto-format = true
+# auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = [ "format" ] },
   { name = "biome", only-features = [ "format" ] },
@@ -31,7 +30,7 @@ language-servers = [
 
 [[language]]
 name = "tsx"
-auto-format = true
+# auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = [ "format" ] },
   { name = "biome", only-features = [ "format" ] },
@@ -40,7 +39,7 @@ language-servers = [
 
 [[language]]
 name = "jsx"
-auto-format = true
+# auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = [ "format" ] },
   { name = "biome", only-features = [ "format" ] },

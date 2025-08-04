@@ -26,3 +26,8 @@ C-e = [
   ':open %sh{cat /tmp/unique-file}',
   ':redraw',
 ]
+
+[keys.normal.space]
+x = "@i- [ ] "
+#this is my version of turbolog, select variable under cursor and insert consolelog after next semicolon
+t = '@miw"oy/;<ret>oconsole.log("~~<space><esc><left>"%pi<esc>a<space>|<space><esc>"opa<right>,<space><esc><left>"op<right><right>i;<esc>'
