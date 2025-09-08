@@ -12,7 +12,7 @@ args = ["--stdio"]
 
 [[language]]
 name = "typescript"
-# auto-format = true
+auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = [ "format" ] },
   { name = "biome", only-features = [ "format" ] },
@@ -21,7 +21,7 @@ language-servers = [
 
 [[language]]
 name = "javascript"
-# auto-format = true
+auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = [ "format" ] },
   { name = "biome", only-features = [ "format" ] },
@@ -30,7 +30,7 @@ language-servers = [
 
 [[language]]
 name = "tsx"
-# auto-format = true
+auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = [ "format" ] },
   { name = "biome", only-features = [ "format" ] },
@@ -39,7 +39,7 @@ language-servers = [
 
 [[language]]
 name = "jsx"
-# auto-format = true
+auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = [ "format" ] },
   { name = "biome", only-features = [ "format" ] },
@@ -48,23 +48,23 @@ language-servers = [
 
 [[language]]
 name = "json"
-language-servers = [{name = "biome"}]
 auto-format = true
+language-servers = [{name = "biome"}]
 
 [[language]]
 name = "css"
-language-servers = [{name = "biome"}]
 auto-format = true
+language-servers = [{name = "biome"}]
 
 [[language]]
 name = "html"
-language-servers = [{name = "biome"}]
 auto-format = true
+language-servers = [{name = "biome"}]
 
 [[language]]
 name = "yaml"
-language-servers = [{name = "biome"}]
 auto-format = true
+language-servers = [{name = "biome"}]
 
 [[language]]
 name = "toml"
@@ -94,5 +94,5 @@ plugins.pylsp_mypy.live_mode = true
 
 [[language]]
 name = "python"
-auto-format = true
-language-servers = ["ruff", "pylsp"]
+auto-format = false
+language-servers = ["pylsp"]

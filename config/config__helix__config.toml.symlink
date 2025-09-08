@@ -1,4 +1,7 @@
-theme = "ayu_evolve"
+theme = "fleet_dark"
+
+[editor.soft-wrap]
+enable = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -26,6 +29,8 @@ C-e = [
   ':open %sh{cat /tmp/unique-file}',
   ':redraw',
 ]
+"C-minus" = "jump_backward"
+"C-_" = "jump_forward"
 
 [keys.normal.space]
 x = "@i- [ ] "

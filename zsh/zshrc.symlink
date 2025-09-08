@@ -3,7 +3,6 @@
 # zmodload zsh/zprof
 
 eval "$(starship init zsh)"
-eval "$(mise activate zsh)"
 
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
@@ -30,8 +29,6 @@ export PATH="$PATH:$DOTFILES/bin"
 # all of our zsh files
 typeset -U config_files
 config_files=($DOTFILES/**/*.zsh)
-export PROJECTS="$HOME/Documents/_OldDropbx/_Tim/Projects"
-export HOMEBREW_BUNDLE_FILE="$HOME/.dotfiles/homebrew/Brewfile"
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
 do
@@ -95,6 +92,13 @@ export EDITOR="hx"
 export NOTES_DIR="$HOME/Projects/notes"
 export HIMALAYA_CONFIG="$HOME/.config/himalaya/config.toml"
 export BAT_THEME="Monokai Extended"
+export FLAVOR="mocha"
+export XDG_CONFIG_HOME="$HOME/.config"
+export NNN_USE_EDITOR=1
+export NNN_BMS="h:~;d:~/Downloads;c:~/.config;f:~/granular/fabric3"
+export PROJECTS="$HOME/Projects"
+export HOMEBREW_BUNDLE_FILE="$HOME/.dotfiles/homebrew/Brewfile"
+export GODSPEED_SYNC_DIR="$NOTES_DIR/godspeed"
 
 # Created by `pipx` on 2024-10-28 03:34:22
 export PATH="$PATH:/Users/tim/.local/bin"
@@ -122,3 +126,5 @@ function y() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
+eval "$(mise activate zsh)"
