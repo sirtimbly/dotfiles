@@ -99,7 +99,8 @@ export NNN_BMS="h:~;d:~/Downloads;c:~/.config;f:~/granular/fabric3"
 export PROJECTS="$HOME/Projects"
 export HOMEBREW_BUNDLE_FILE="$HOME/.dotfiles/homebrew/Brewfile"
 export GODSPEED_SYNC_DIR="$NOTES_DIR/godspeed"
-
+export GOMODCACHE="$HOME/go/pkg/mod"
+export GOPATH="$HOME/go"
 # Created by `pipx` on 2024-10-28 03:34:22
 export PATH="$PATH:/Users/tim/.local/bin"
 
@@ -128,3 +129,22 @@ function y() {
 }
 
 eval "$(mise activate zsh)"
+
+# Always open VSCode with mise paths
+code() {
+    local args=("$@")
+    local workdir=""
+    
+    for arg in "${args[@]}"; do
+        if [[ "$arg" != -* ]]; then
+            workdir="$arg"
+            break
+        fi
+    done
+
+    if [[ -n "$workdir" ]]; then
+        mise exec --cd "$workdir" -- code "$@"
+    else
+        command code "$@"
+    fi
+}

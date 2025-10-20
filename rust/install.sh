@@ -1,7 +1,6 @@
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-echo "install zellij from CARGO"
+echo "install several binaries from CARGO"
 cargo install zellij
-
-echo "install bat from cargo"
 cargo install bat
+cargo install glim
