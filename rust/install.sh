@@ -1,6 +1,9 @@
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-echo "install several binaries from CARGO"
-cargo install zellij
-cargo install bat
-cargo install glim
+if ! test -d ~/.asdf
+then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
+echo "install tools from CARGO"
+cargo install cargo-binstall
+xargs -L 1 cargo bisnstall < "$DOTFILES/rust/Cargofile.txt"

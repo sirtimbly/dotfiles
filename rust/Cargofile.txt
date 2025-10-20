@@ -1,0 +1,6 @@
+envex
+glim-tui
+granular-login
+himalaya
+rustormy
+zoxide

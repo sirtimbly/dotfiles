@@ -131,6 +131,8 @@ function y() {
 eval "$(mise activate zsh)"
 
 # Always open VSCode with mise paths
+# ----------------------------------
+
 code() {
     local args=("$@")
     local workdir=""

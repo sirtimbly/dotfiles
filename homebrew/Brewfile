@@ -55,8 +55,6 @@ brew "bat-extras"
 brew "cmake"
 # Dependency manager for Cocoa projects
 brew "cocoapods"
-# Contentful command-line tools
-brew "contentful-cli"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Load/unload environment variables based on $PWD
@@ -151,8 +149,8 @@ brew "guile"
 brew "helix", args: ["HEAD"]
 # Improved top (interactive process viewer)
 brew "htop"
-# User-friendly cURL replacement (command-line HTTP client)
-brew "httpie"
+# # User-friendly cURL replacement (command-line HTTP client)
+# brew "httpie"
 # Library for reading RAW files from digital photo cameras
 brew "libraw"
 # Tools and libraries to manipulate images in many formats
@@ -163,10 +161,10 @@ brew "jq"
 brew "khal"
 # LastPass command-line interface tool
 brew "lastpass-cli"
-# Lazier way to manage everything docker
-brew "lazydocker"
-# Simple terminal UI for git commands
-brew "lazygit"
+# # Lazier way to manage everything docker
+# brew "lazydocker"
+# # Simple terminal UI for git commands
+# brew "lazygit"
 # Access DVDs as block devices without the decryption
 brew "libdvdcss"
 # Count lines of code quickly
@@ -193,20 +191,20 @@ brew "mpv"
 brew "musikcube"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Statically typed compiled systems programming language
-brew "nim"
+# # Statically typed compiled systems programming language
+# brew "nim"
 # Tiny, lightning fast, feature-packed file manager
 brew "nnn"
-# Open Visual Inference And Optimization toolkit for AI inference
-brew "openvino"
+# # Open Visual Inference And Optimization toolkit for AI inference
+# brew "openvino"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
-# Theme for zsh
-brew "powerlevel10k"
+# # Theme for zsh
+# brew "powerlevel10k"
 # Easily download, build, install, upgrade, and uninstall Python packages
 brew "python-setuptools"
 # Python interface to Tcl/Tk
@@ -216,6 +214,7 @@ brew "python-tk@3.12"
 brew "ripgrep"
 # Install various Ruby versions and implementations
 brew "ruby-build"
+brew "rclone"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Terminal based presentation tool
@@ -273,14 +272,14 @@ brew "yazi"
 # Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
 # Pluggable terminal workspace, with terminal multiplexer as the base feature
-brew "zellij"
+# brew "zellij"
 # Shell extension to navigate your filesystem faster
-brew "zoxide"
+# brew "zoxide"
 brew "armmbed/formulae/arm-none-eabi-gcc"
 # A CLI for building apps using Cloud Native Buildpacks
 brew "buildpacks/tap/pack"
 # An npm scripts runner written in Rust.
-brew "egoist/tap/dum"
+# brew "egoist/tap/dum"
 # A window border system for macOS
 brew "felixkratz/formulae/borders"
 # Custom macOS statusbar with shell plugin, interaction and graph support
@@ -291,7 +290,7 @@ brew "git-time-metric/gtm/gtm"
 brew "jez/formulae/pandoc-sidenote"
 # Interactive Grep
 brew "konradsz/igrep/igrep"
-brew "rockymadden/rockymadden/somafm-cli"
+# brew "rockymadden/rockymadden/somafm-cli"
 # The AI coding agent built for the terminal.
 brew "sst/tap/opencode"
 # A simple TUI tool to make your homebrew bold.
@@ -334,7 +333,7 @@ cask "font-meslo-for-powerline"
 cask "font-sauce-code-pro-nerd-font"
 cask "font-source-code-pro"
 # GIT client
-cask "fork"
+# cask "fork"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
 # Terminal emulator that uses platform-native UI and GPU acceleration
@@ -346,38 +345,38 @@ cask "highflux"
 # Tool to optimise images to a smaller size
 cask "imageoptim"
 # Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
+# cask "iterm2"
 # Keyboard customiser
 cask "karabiner-elements"
 # Privacy-first, open-source platform for knowledge sharing and management
-cask "logseq"
+# cask "logseq"
 # Window manager
 cask "loop"
 # Cable-free audio router
-cask "loopback"
+# cask "loopback"
 # Visual diff and merge tool
 cask "meld"
 # Replacement for Docker Desktop
-cask "orbstack"
+# cask "orbstack"
 # Quick Look generator for Markdown files
-cask "qlmarkdown"
+# cask "qlmarkdown"
 # Plain-text file notepad and todo-list manager
-cask "qownnotes"
+# cask "qownnotes"
 # Quick Look plugin for JSON files
 cask "quicklook-json"
 # Team communication and collaboration software
-cask "slack"
+# cask "slack"
 # Text editor for code, markup and prose
-cask "sublime-text"
+# cask "sublime-text"
 # To-do & task list manager
-cask "ticktick"
+# cask "ticktick"
 # Control your data usage on slow or expensive networks
-cask "tripmode"
+# cask "tripmode"
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
 cask "vlc"
 # View output from scripts in the menu bar
-cask "xbar"
+# cask "xbar"
 # Video communication and virtual meeting platform
-cask "zoom"
+# cask "zoom"
