@@ -6,4 +6,4 @@ fi
 
 echo "install tools from CARGO"
 cargo install cargo-binstall
-xargs -L 1 cargo bisnstall < "$DOTFILES/rust/Cargofile.txt"
+xargs -L 1 cargo binstall < "$DOTFILES/rust/Cargofile.txt"

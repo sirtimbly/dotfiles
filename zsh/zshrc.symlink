@@ -4,9 +4,9 @@
 
 eval "$(starship init zsh)"
 
-. "$HOME/.atuin/bin/env"
+# . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
-eval "$(gh copilot alias -- zsh)"
+# eval "$(gh copilot alias -- zsh)"
 
 eval "$(zoxide init --cmd=cd zsh)"
 
@@ -149,3 +149,4 @@ code() {
         command code "$@"
     fi
 }
+export PATH="$HOME/.local/bin:$PATH"
