@@ -312,8 +312,8 @@ cask "colorsnapper"
 # Universal database tool and SQL client
 cask "dbeaver-community"
 # App to build and share containerised applications and microservices
-cask "docker"
-cask "docker-desktop"
+# cask "docker"
+# cask "docker-desktop"
 # File sharing solution
 cask "dropshare"
 # Collaborative team software

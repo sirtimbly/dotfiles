@@ -1,5 +1,6 @@
 font-family = SauceCodePro Nerd Font Mono
 font-size = 17
-theme = GitLab Dark
+theme = Ayu Mirage
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
-
+quick-terminal-position = center

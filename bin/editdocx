@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Script to edit a .docx file as Markdown in the terminal.
+# This version uses a more portable `mktemp` command for macOS/BSD compatibility.
+# Usage: editdocx "Your File Name.docx"
+
+# --- 1. Check if a filename was provided ---
+if [ -z "$1" ]; then
+    echo "❌ Error: No file specified."
+    echo "Usage: editdocx <filename.docx>"
+    exit 1
+fi
+
+# --- 2. Define file variables and create a secure temporary file ---
+DOCX_FILE="$1"
+# This portable version of mktemp creates a temporary file in /tmp
+# with a random name starting with "editdocx.".
+TEMP_MD=$(mktemp /tmp/editdocx.XXXXXX)
+
+# --- 3. Add a trap to ensure the temp file is deleted on exit ---
+# This runs automatically when the script exits, even if it errors out.
+trap 'rm -f "$TEMP_MD"' EXIT
+
+# --- 4. Convert .docx to Markdown ---
+echo "🔄 Converting to Markdown..."
+pandoc "$DOCX_FILE" -f docx -t markdown -o "$TEMP_MD"
+
+# --- 5. Open Markdown file in the default text editor ---
+# This uses the $EDITOR environment variable. If it's not set, it defaults to vim.
+${EDITOR:-vim} "$TEMP_MD"
+
+# --- 6. Convert edited Markdown back to .docx, overwriting the original ---
+echo "💾 Saving changes back to .docx..."
+pandoc "$TEMP_MD" -f markdown -t docx -o "$DOCX_FILE"
+
+echo "✅ Document '$DOCX_FILE' was updated successfully."

@@ -36,3 +36,12 @@ C-e = [
 x = "@i- [ ] "
 #this is my version of turbolog, select variable under cursor and insert consolelog after next semicolon
 t = '@miw"oy/;<ret>oconsole.log("~~<space><esc><left>"%pi<esc>a<space>|<space><esc>"opa<right>,<space><esc><left>"op<right><right>i;<esc>'
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor]
+end-of-line-diagnostics = "hint"
+
+[editor.inline-diagnostics]
+cursor-line = "warning"

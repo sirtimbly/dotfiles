@@ -10,6 +10,10 @@ args = ["--stdio"]
 "eslint.experimental.useFlatConfig" = false
 "eslint.workingDirectories" = [ { "mode" = "auto" } ]
 
+[language-server.zk]
+command = "zk"
+args = ["lsp"]
+
 [[language]]
 name = "typescript"
 auto-format = true
@@ -94,5 +98,18 @@ plugins.pylsp_mypy.live_mode = true
 
 [[language]]
 name = "python"
-auto-format = false
-language-servers = ["pylsp"]
+auto-format = true
+language-servers = ["ruff", "pylsp"]
+
+[language-server.mdmath-lsp]
+command = "mdmath-lsp"
+args = ["--stdio"]
+
+[[language]]
+name = "markdown"
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md"]}
+language-servers = [
+  "zk",
+  "marksman",
+  { name = "mdmath-lsp", only-features = ["hover", "diagnostics", "inlay-hints", "code-action"] }
+]
