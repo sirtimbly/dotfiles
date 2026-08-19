@@ -19,8 +19,12 @@ if command -v granted &> /dev/null; then
         granted completion -s zsh
     }
 fi
+export GRANTED_ALIAS_CONFIGURED="true"
 
-if test ! $(which jira); then
-    eval "$(jira --completion-script-bash)"
-fi
+# if test ! $(which jira); then
+#     eval "$(jira --completion-script-bash)"
+# fi
 
+# if test ! $(which dstask); then
+#     dstask zsh-completion > /usr/local/share/zsh/site-functions/_dstask
+# fi

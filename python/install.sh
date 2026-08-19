@@ -1,4 +1,5 @@
-
+# Intall UV
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Granular AWS Login Utility
 # pipx install granularaccountmap

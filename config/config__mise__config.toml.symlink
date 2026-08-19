@@ -1,5 +1,5 @@
 [tools]
-go = "1.22.4"
+go = "latest"
 granted = "0.14.0"
 node = "22"
 pnpm = "9.15.0"

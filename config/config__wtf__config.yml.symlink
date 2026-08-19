@@ -17,9 +17,11 @@ wtf:
         odd: "white"
       domain: "https://corteva-research.atlassian.net"
       email: "timothy.bendt@corteva.com"
-      username: "timothy.bendt@corteva.com"
+      # username: "timothy.bendt@corteva.com"
       enabled: true
-      jql: "resolution = unresolved ORDER BY priority asc, created"
+      project:
+        - "Activities"
+      jql: "resolution = unresolved AND labels = 'frontend' ORDER BY priority asc, created"
       verifyServerCertificate: true
       refreshInterval: 15m
       position:

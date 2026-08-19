@@ -4,3 +4,8 @@ granular-login
 himalaya
 rustormy
 zoxide
+rainfrog
+openapi-tui
+csvlens
+bandwhich
+mcat

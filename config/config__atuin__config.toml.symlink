@@ -30,6 +30,7 @@
 
 ## address of the sync server
 # sync_address = "https://api.atuin.sh"
+sync_address = "http://ds923plus.local:8899"
 
 ## how often to sync history. note that this is only triggered when a command
 ## is ran, so sync intervals may well be longer
