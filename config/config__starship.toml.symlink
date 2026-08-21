@@ -15,8 +15,8 @@ command_timeout = 3000
 success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
 
 # Disable the package module, hiding it from the prompt completely
-# [package]
-# disabled = true
+[package]
+disabled = true
 
 # [git_commit]
 # disabled = true
@@ -25,10 +25,10 @@ success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set
 # disabled = true
 
 [nodejs]
-# disabled = true
+disabled = true
 
 [gcloud]
 disabled = true
 
 [python]
-# disabled = true
+disabled = true

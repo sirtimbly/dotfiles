@@ -1,0 +1,44 @@
+[task]
+backend = "dstask"
+taskwarrior_path = "dstask"
+dstask_path = "/Users/timothy.bendt/.local/bin/dstask"
+
+[envelope_display]
+max_sender_length = 25
+date_format = "%m/%d"
+time_format = "%H:%M"
+show_date = true
+show_time = true
+group_by = "relative"
+lines = 2
+show_checkbox = true
+show_preview = false
+icon_unread = "\uf0e0"
+icon_read = "\uf2b6"
+icon_flagged = "\uf024"
+icon_attachment = "\uf0c6"
+
+[content_display]
+default_view_mode = "markdown"
+
+[keybindings]
+next_message = "j"
+prev_message = "k"
+delete = "#"
+archive = "e"
+open_by_id = "o"
+quit = "q"
+toggle_header = "h"
+create_task = "t"
+reload = "%"
+toggle_sort = "s"
+toggle_selection = "x"
+clear_selection = "escape"
+scroll_page_down = "space"
+scroll_page_up = "b"
+toggle_main_content = "w"
+open_links = "l"
+toggle_view_mode = "m"
+
+[theme]
+theme_name = "monokai"

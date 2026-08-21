@@ -2,11 +2,12 @@
 go = "latest"
 granted = "0.14.0"
 node = "22"
-pnpm = "9.15.0"
+pnpm = "10"
 python = "3.12"
 tfenv = "0.4.0"
 zig = "0.13.0"
 terraform-docs = "0.19.0"
+biome = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["terraform"]

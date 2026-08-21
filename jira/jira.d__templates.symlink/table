@@ -1,0 +1,15 @@
+{{/* table template */ -}}
+{{- headers "Issue" "Summary" "Type" "Status" "Age" "Assignee" -}}
+{{- range .issues -}}
+  {{- row -}}
+  {{- cell .key -}}
+  {{- cell .fields.summary -}}
+  {{- cell .fields.issuetype.name -}}
+  {{- cell .fields.status.name -}}
+  {{- cell (.fields.created | age) -}}
+  {{- if .fields.assignee -}}
+    {{- cell .fields.assignee.displayName -}}
+  {{- else -}}
+    {{- cell "<unassigned>" -}}
+  {{- end -}}
+{{- end -}}

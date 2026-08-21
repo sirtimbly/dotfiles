@@ -2,3 +2,27 @@ syntax on
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
+set termguicolors
+set background=dark
+
+augroup MyDiffHighlights
+  autocmd!
+  " Run at startup
+  autocmd VimEnter * call s:DiffHighlights()
+  " Re-apply after any colorscheme
+  autocmd ColorScheme * call s:DiffHighlights()
+  " Re-apply when entering diff mode
+  autocmd OptionSet diff if &diff | call s:DiffHighlights() | endif
+augroup END
+
+function! s:DiffHighlights() abort
+  " Only apply in diff mode (vimdiff or :set diff)
+  if !&diff
+    return
+  endif
+  " Force override even if a colorscheme used highlight links
+  highlight! DiffAdd    cterm=NONE ctermfg=NONE ctermbg=22  gui=NONE guifg=NONE guibg=#243c32  " greenish tint
+  highlight! DiffChange cterm=NONE ctermfg=NONE ctermbg=60  gui=NONE guifg=NONE guibg=#30364b  " bluish-gray tint
+  highlight! DiffDelete cterm=NONE ctermfg=NONE ctermbg=53  gui=NONE guifg=NONE guibg=#3a2a34  " muted maroon tint
+  highlight! DiffText   cterm=NONE ctermfg=NONE ctermbg=60  gui=NONE guifg=NONE guibg=#44475a  " near Dracula selection
+endfunction

@@ -1,4 +1,19 @@
+#!/usr/bin/env zsh
+# The shebang is inert (this file is sourced, never executed). It exists so
+# editors can detect the language: the ".symlink" extension matches no known
+# file-type, so Helix/tree-sitter fall back to shebang sniffing.
+# Trust the ZScaler root CA instead of disabling TLS entirely.
+# ~/.zscaler-root-ca.pem was extracted from the system keychain:
+#   security find-certificate -a -c "Zscaler Root CA" -p /Library/Keychains/System.keychain > ~/.zscaler-root-ca.pem
+export NODE_EXTRA_CA_CERTS="$HOME/.zscaler-root-ca.pem"
 
+# Quick alias to temporarily bypass TLS (use with caution — e.g. behind a firewall)
+alias tls-off='export NODE_TLS_REJECT_UNAUTHORIZED=0'
+alias tls-on='unset NODE_TLS_REJECT_UNAUTHORIZED'
+
+
+# Keep $path free of duplicates (first occurrence wins).
+typeset -U path PATH
 
 # zmodload zsh/zprof
 
@@ -15,9 +30,6 @@ zstyle ':omz:update' frequency 30
 export ZSH=$HOME/.oh-my-zsh
 export DOTFILES="$HOME/.dotfiles"
 
-
-source ~/developer/zsh-helix-mode/zsh-helix-mode.plugin.zsh
-plugins=(zsh-helix-mode)
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
@@ -71,10 +83,27 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
+# ------------- zsh-helix-mode -------------
+# Helix-style modal editing on the command line.
+#
+# Sourced LAST of anything touching ZLE so its keymaps win. Load order matters:
+#   - `atuin init` (above) binds ^[[A -> atuin-up-search and ^R -> atuin-search
+#   - the two bindkey lines above then re-bind ^[[A/^[[B for themselves
+#   - zsh-helix-mode installs its own keymaps and supersedes both
+# So expect up-arrow and ^R to behave the helix way, not the atuin way. To get
+# atuin's search back, comment this block out rather than reordering it.
+#
+# NOTE: lives in ~/developer (a manual git clone), not in this repo, so it is
+# guarded — a missing clone must not break shell startup.
+ZHM_PLUGIN="$HOME/developer/zsh-helix-mode/zsh-helix-mode.plugin.zsh"
+if [[ -r "$ZHM_PLUGIN" ]]; then
+  source "$ZHM_PLUGIN"
+else
+  print -u2 "zshrc: zsh-helix-mode not found at $ZHM_PLUGIN (skipping)"
+fi
+unset ZHM_PLUGIN
+
 export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 # bun completions
 # [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -84,15 +113,19 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # export PATH="$BUN_INSTALL/bin:$PATH"
 
 # pnpm
-# APPEND, never prepend: a prepended $PNPM_HOME/bin shadows the mise-managed
-# pnpm whenever pnpm has installed itself globally (`pnpm self-update`).
+# Global bins live in $PNPM_HOME/bin (pnpm >=10; the older layout used $PNPM_HOME
+# itself). APPEND, never prepend: if pnpm ever installs itself globally
+# (`pnpm self-update`), a prepended entry shadows the mise-managed pnpm and you
+# silently build lockfiles with the wrong pnpm major.
 export PNPM_HOME="$HOME/Library/pnpm"
 path+=("$PNPM_HOME/bin")
 # pnpm end
 
-export PATH="/Users/tim/.bun/bin:$PATH"
-
-
+# PATH additions — npx, foundry
+# NPM_CONFIG_PREFIX is not set by default; without the guard this appends a
+# bare "/bin" to $path.
+[[ -n "$NPM_CONFIG_PREFIX" ]] && path+=("$NPM_CONFIG_PREFIX/bin")
+path+=("$HOME/.foundry/bin")
 export EDITOR="hx"
 export VISUAL="hx"
 export NOTES_DIR="$HOME/Projects/notes"
@@ -116,6 +149,7 @@ export NVIM_LISTEN_ADDRESS=/tmp/nvim-server
 
 export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/config/ripgrep_config"
 
+eval "$(worktree-bin shell-init)"
 
 # ------------FZF--------------
 # eval "$(fzf --zsh)"
@@ -126,7 +160,7 @@ export FZF_DEFAULT_OPTS="--preview '
     bat --style=numbers --color=always --line-range=:500 {}
   fi
 ' --preview-window=right:45% \
-  --bind 'ctrl-e:execute-silent(hx {})' \
+  --bind 'ctrl-e:execute(hx {})' \
   --bind 'ctrl-v:execute-silent(bat {})' \
   --bind 'ctrl-c:execute-silent(cp -iv {} .)' \
   --bind 'ctrl-d:execute-silent(rm -i {})' \
@@ -168,3 +202,26 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/Users/timothy.bendt/.lmstudio/bin"
 # End of LM Studio CLI section
 
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# BEDROCK FOR CORTEVA CLAUDE CODE
+
+# . "$HOME/bin/bedrock.sh"
+
+
+# >>> Bedrock integration >>>
+export CLAUDE_CODE_USE_BEDROCK=1
+export AWS_REGION=us-east-1
+export ANTHROPIC_DEFAULT_HAIKU_MODEL=us.anthropic.claude-haiku-4-5-20251001-v1:0
+export ANTHROPIC_DEFAULT_SONNET_MODEL=us.anthropic.claude-sonnet-4-6
+export ANTHROPIC_DEFAULT_OPUS_MODEL=us.anthropic.claude-opus-4-6-v1
+export CLAUDE_CODE_ENABLE_TELEMETRY=1
+export OTEL_METRICS_EXPORTER=otlp
+export OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector.services.pioneer.com:4317
+export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
+export OTEL_METRIC_EXPORT_INTERVAL=10000
+export OTEL_RESOURCE_ATTRIBUTES="user_name=timothy.bendt"
+# <<< Bedrock integration <<<

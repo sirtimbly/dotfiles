@@ -2,3 +2,28 @@ git/gitconfig.local.symlink
 */Brewfile.lock.json
 .DS_Store
 node_modules
+
+# ---------------------------------------------------------------------------
+# Secret-bearing files. THIS REPO IS PUBLIC.
+#
+# These configs hold live credentials, so they are deliberately NOT managed
+# here: they stay as plain files in $HOME, outside the repo tree. The patterns
+# below are a backstop against an accidental `cp` or `git add` bringing one in.
+#
+# Templates with values stripped live alongside as *.example files.
+#   real ~/.npmrc            -> template: node/npmrc.example
+#   real ~/.jira.d/config.yml (only .jira.d/templates/ is versioned)
+# ---------------------------------------------------------------------------
+npmrc
+npmrc.symlink
+*/npmrc.symlink
+.npmrc
+jira.d__config.yml.symlink
+*/jira.d__config.yml.symlink
+jira/config.yml
+
+# luk keeps runtime state next to its config; only the *.toml files are
+# versioned (see luk/config__luk__*.toml.symlink).
+*state*.json
+*.pid
+sync_tasks.json

@@ -2,13 +2,13 @@
 command = "biome" 
 args = ["lsp-proxy"]
 
-[language-server.vscode-eslint-language-server]
-command = "vscode-eslint-language-server"
-args = ["--stdio"]
+# [language-server.vscode-eslint-language-server]
+# command = "vscode-eslint-language-server"
+# args = ["--stdio"]
 
-[language-server.vscode-eslint-language-server.settings]
-"eslint.experimental.useFlatConfig" = false
-"eslint.workingDirectories" = [ { "mode" = "auto" } ]
+# [language-server.vscode-eslint-language-server.settings]
+# "eslint.experimental.useFlatConfig" = false
+# "eslint.workingDirectories" = [ { "mode" = "auto" } ]
 
 [language-server.zk]
 command = "zk"
@@ -75,10 +75,16 @@ name = "toml"
 language-servers = [{name = "biome"}]
 auto-format = true
 
+[language-server.mdmath-lsp]
+command = "mdmath-lsp"
+
 [[language]]
 name = "markdown"
-language-servers = [{name = "biome"}]
-auto-format = true
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md"]}
+language-servers = [
+  "marksman",
+  { name = "mdmath-lsp", only-features = ["hover", "diagnostics", "inlay-hints", "code-action"] }
+]
 
 [language-server.ruff]
 command = "ruff"
