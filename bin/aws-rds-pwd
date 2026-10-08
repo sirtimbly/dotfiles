@@ -1,0 +1,239 @@
+#!/usr/bin/env python3
+"""Generate an RDS IAM auth token for a corteva-workload database.
+
+Examples:
+    aws-rds-pwd chatbot                    # raw token (default)
+    aws-rds-pwd chatbot -f uri             # postgresql://user:token@host:5432/db?sslmode=require
+    aws-rds-pwd chatbot -f jdbc --copy     # jdbc url, copied to clipboard
+    aws-rds-pwd chatbot -f json            # all the pieces, for scripting
+"""
+
+import argparse
+import json
+import os
+import subprocess
+import sys
+from urllib.parse import quote
+
+import requests
+from yaml import Loader, load
+
+ENV_MAPPING = {
+    "dev": "corteva-workload-dev",
+    "corteva-workload-dev": "corteva-workload-dev",
+    "test": "corteva-workload-test",
+    "corteva-workload-test": "corteva-workload-test",
+    "prod": "corteva-workload-prod",
+    "corteva-workload-prod": "corteva-workload-prod",
+}
+
+# Files under databases/<env>/ in rds-user-generator. The granapp* databases
+# were removed from that repo on 2026-07-15 (commit 1173a015).
+CONFIG_MAP = {
+    "chatbot": "chatbot-svc-db.yml",
+    "crophealth": "crophealth-genai-chat-db.yml",
+    "quick-facts": "product-label-quick-facts-db.yml",
+}
+
+GITLAB = "https://gitlab.rd.corteva.com/api/v4/projects/3554/repository"
+
+# port -> (uri scheme, jdbc subprotocol)
+SCHEMES = {
+    5432: ("postgresql", "postgresql"),
+    3306: ("mysql", "mysql"),
+}
+
+
+def die(message):
+    print(message, file=sys.stderr)
+    sys.exit(1)
+
+
+def require_env(name):
+    value = os.environ.get(name)
+    if not value:
+        die(f"environment variable {name} is required")
+    return value
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Generate an RDS IAM auth token / connection string.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=f"databases: {', '.join(sorted(CONFIG_MAP))}",
+    )
+    parser.add_argument("database", help="short database name, e.g. fields")
+    parser.add_argument(
+        "-f",
+        "--format",
+        default="token",
+        choices=["token", "uri", "jdbc", "psql", "json", "env"],
+        help="output format (default: token)",
+    )
+    parser.add_argument("--region", help="override AWS_REGION")
+    parser.add_argument("--user", help="override EMAIL (db user)")
+    parser.add_argument(
+        "--db-name", help="override the database name from the config file"
+    )
+    parser.add_argument(
+        "--no-ssl", action="store_true", help="omit sslmode=require from the url"
+    )
+    parser.add_argument(
+        "-c", "--copy", action="store_true", help="also copy the output to the clipboard"
+    )
+    return parser.parse_args()
+
+
+def gitlab_get(url, token):
+    try:
+        response = requests.get(url, headers={"PRIVATE-TOKEN": token}, timeout=30)
+    except requests.RequestException as exc:
+        die(f"GET {url} failed: {exc}")
+    if response.status_code != 200:
+        die(
+            f"GET {url} failed: {response.status_code} {response.reason}"
+        )
+    return response
+
+
+def fetch_host_config(env_name, config_file, aws_region, gitlab_token):
+    meta = gitlab_get(
+        f"{GITLAB}/files/databases%2F{env_name}%2F{config_file}?ref=main", gitlab_token
+    ).json()
+    text = gitlab_get(f"{GITLAB}/blobs/{meta['blob_id']}/raw", gitlab_token).text
+
+    config = load(text, Loader)
+    for host in config.get("hosts") or []:
+        if aws_region in host["host"]:
+            return host
+    die(f"no host for region {aws_region} in {config_file}")
+
+
+def generate_token(host, port, user, region):
+    result = subprocess.run(
+        [
+            "aws",
+            "rds",
+            "generate-db-auth-token",
+            f"--hostname={host}",
+            f"--port={port}",
+            f"--username={user}",
+            f"--region={region}",
+        ],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        die(result.stderr.strip() or "aws rds generate-db-auth-token failed")
+    return result.stdout.strip()
+
+
+def render(fmt, *, host, port, dbname, user, token, ssl):
+    uri_scheme, jdbc_scheme = SCHEMES.get(port, ("postgresql", "postgresql"))
+    # The token is a presigned URL: it contains '/', '?', '&', '=' and '%'
+    # so every reserved character has to be escaped before it goes in a URL.
+    enc_user = quote(user, safe="")
+    enc_token = quote(token, safe="")
+    query = "?sslmode=require" if ssl else ""
+
+    if fmt == "token":
+        return token
+    if fmt == "uri":
+        return (
+            f"{uri_scheme}://{enc_user}:{enc_token}@{host}:{port}/{dbname}{query}"
+        )
+    if fmt == "jdbc":
+        return (
+            f"jdbc:{jdbc_scheme}://{host}:{port}/{dbname}"
+            f"?user={enc_user}&password={enc_token}"
+            + ("&ssl=true&sslmode=require" if ssl else "")
+        )
+    if fmt == "psql":
+        parts = [
+            f"host={host}",
+            f"port={port}",
+            f"dbname={dbname}",
+            f"user={user}",
+            f"password={token}",
+        ]
+        if ssl:
+            parts.append("sslmode=require")
+        return " ".join(f"{p.split('=', 1)[0]}='{p.split('=', 1)[1]}'" for p in parts)
+    if fmt == "json":
+        return json.dumps(
+            {
+                "host": host,
+                "port": port,
+                "database": dbname,
+                "user": user,
+                "password": token,
+                "sslmode": "require" if ssl else "prefer",
+                "uri": f"{uri_scheme}://{enc_user}:{enc_token}@{host}:{port}/{dbname}{query}",
+            },
+            indent=2,
+        )
+    if fmt == "env":
+        return "\n".join(
+            [
+                f"PGHOST={host}",
+                f"PGPORT={port}",
+                f"PGDATABASE={dbname}",
+                f"PGUSER={user}",
+                f"PGPASSWORD={token}",
+                "PGSSLMODE=require" if ssl else "PGSSLMODE=prefer",
+            ]
+        )
+    die(f"unknown format {fmt}")
+
+
+def copy_to_clipboard(text):
+    try:
+        subprocess.run(["pbcopy"], input=text, text=True, check=True)
+        print("copied to clipboard", file=sys.stderr)
+    except (OSError, subprocess.CalledProcessError) as exc:
+        print(f"could not copy to clipboard: {exc}", file=sys.stderr)
+
+
+def main():
+    args = parse_args()
+
+    env = require_env("AWS_PROFILE").split("/")[0]
+    env_name = ENV_MAPPING.get(env)
+    if not env_name:
+        die(f"Environment {env} not found")
+
+    config_file = CONFIG_MAP.get(args.database)
+    if not config_file:
+        die(
+            f"Database {args.database} not found. "
+            f"Known: {', '.join(sorted(CONFIG_MAP))}"
+        )
+
+    aws_region = args.region or require_env("AWS_REGION")
+    user = args.user or require_env("EMAIL")
+    gitlab_token = require_env("GITLAB_TOKEN")
+
+    host_config = fetch_host_config(env_name, config_file, aws_region, gitlab_token)
+    host = host_config["host"]
+    port = int(host_config["port"])
+    dbname = args.db_name or host_config.get("database") or args.database
+
+    token = generate_token(host, port, user, aws_region)
+
+    output = render(
+        args.format,
+        host=host,
+        port=port,
+        dbname=dbname,
+        user=user,
+        token=token,
+        ssl=not args.no_ssl,
+    )
+
+    if args.copy:
+        copy_to_clipboard(output)
+    print(output)
+
+
+if __name__ == "__main__":
+    main()

@@ -212,9 +212,17 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # . "$HOME/bin/bedrock.sh"
 
 
+
+# opencode
+export PATH=/Users/timothy.bendt/.opencode/bin:$PATH
+
+
 # >>> Bedrock integration >>>
 export CLAUDE_CODE_USE_BEDROCK=1
 export AWS_REGION=us-east-1
+# Credentials come from granted's credential_process for this profile; log in
+# with `aws-bedrock-login --login` instead of `assume` so no shell holds stale keys.
+export AWS_PROFILE=corteva-workload-dev/AIDeveloperRole
 export ANTHROPIC_DEFAULT_HAIKU_MODEL=us.anthropic.claude-haiku-4-5-20251001-v1:0
 export ANTHROPIC_DEFAULT_SONNET_MODEL=us.anthropic.claude-sonnet-4-6
 export ANTHROPIC_DEFAULT_OPUS_MODEL=us.anthropic.claude-opus-4-6-v1
