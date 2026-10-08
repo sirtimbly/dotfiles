@@ -1,0 +1,117 @@
+#!/bin/bash
+# Keeps the AWS SSO session used for Bedrock (OpenCode, Claude Code) logged in.
+#
+#   aws-bedrock-login           Check the session; if expired and you're at the
+#                               computer, show a dialog offering to log in.
+#                               Run every minute by the LaunchAgent.
+#   aws-bedrock-login --login   Log in now (opens the browser).
+#   aws-bedrock-login --status  Print whether the session is valid.
+
+set -u
+
+PROFILE="corteva-workload-dev/AIDeveloperRole"
+SSO_START_URL="https://corteva-new.awsapps.com/start"
+SSO_REGION="us-east-1"
+
+IDLE_LIMIT=60          # only prompt if there was keyboard/mouse input in the last N seconds
+SNOOZE_SECONDS=1800    # "Later" hides the prompt for this long
+ERROR_SNOOZE_SECONDS=300  # retry delay when the dialog itself fails
+OK_CACHE_SECONDS=600   # after a successful check, skip re-checking for this long
+
+STATE_DIR="$HOME/Library/Caches/aws-bedrock-login"
+SNOOZE_FILE="$STATE_DIR/snooze-until"
+OK_FILE="$STATE_DIR/last-ok"
+
+export PATH="$HOME/.local/share/mise/shims:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+# Static keys exported by `assume` would mask the profile; always use the profile.
+unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_SESSION_EXPIRATION AWS_CREDENTIAL_EXPIRATION
+# Static keys in ~/.aws/credentials take precedence over credential_process;
+# ignore the shared credentials file so the SSO profile is always used.
+export AWS_SHARED_CREDENTIALS_FILE=/dev/null
+export AWS_PROFILE="$PROFILE"
+
+mkdir -p "$STATE_DIR"
+now=$(date +%s)
+
+log() { echo "$(date '+%Y-%m-%d %H:%M:%S') $*"; }
+
+session_valid() {
+  aws sts get-caller-identity --profile "$PROFILE" --query Arn --output text \
+    --cli-connect-timeout 10 --cli-read-timeout 15 >/dev/null 2>&1
+}
+
+idle_seconds() {
+  ioreg -c IOHIDSystem | awk '/HIDIdleTime/ {print int($NF/1000000000); exit}'
+}
+
+notify() {
+  osascript -e "display notification \"$1\" with title \"AWS Bedrock\"" >/dev/null 2>&1
+}
+
+do_login() {
+  log "starting granted sso login"
+  if granted sso login --sso-start-url "$SSO_START_URL" --sso-region "$SSO_REGION" && session_valid; then
+    date +%s >"$OK_FILE"
+    rm -f "$SNOOZE_FILE"
+    log "login succeeded"
+    notify "Logged in. OpenCode and Claude Code can use Bedrock."
+    return 0
+  fi
+  log "login failed"
+  notify "Login failed. Run aws-bedrock-login --login in a terminal."
+  return 1
+}
+
+case "${1:-}" in
+  --login)
+    do_login
+    exit $?
+    ;;
+  --status)
+    if session_valid; then echo "valid ($PROFILE)"; exit 0; else echo "expired ($PROFILE)"; exit 1; fi
+    ;;
+esac
+
+last_ok=$(cat "$OK_FILE" 2>/dev/null || echo 0)
+(( now - last_ok < OK_CACHE_SECONDS )) && exit 0
+
+if session_valid; then
+  echo "$now" >"$OK_FILE"
+  rm -f "$SNOOZE_FILE"
+  exit 0
+fi
+rm -f "$OK_FILE"
+
+idle=$(idle_seconds)
+(( ${idle:-0} > IDLE_LIMIT )) && exit 0
+
+snooze_until=$(cat "$SNOOZE_FILE" 2>/dev/null || echo 0)
+(( now < snooze_until )) && exit 0
+
+log "session expired; prompting"
+dialog_err="$STATE_DIR/dialog-error"
+answer=$(osascript 2>"$dialog_err" <<'EOF'
+activate
+set theResult to display dialog ("Your AWS SSO session for Bedrock (OpenCode / Claude Code) has expired." & return & return & "Log in now?") with title "AWS Bedrock" buttons {"Later", "Log In"} default button "Log In" with icon caution giving up after 600
+if gave up of theResult then return "Later"
+return button returned of theResult
+EOF
+)
+dialog_status=$?
+
+case "$answer" in
+  "Log In")
+    do_login
+    ;;
+  "Later")
+    echo $(( now + SNOOZE_SECONDS )) >"$SNOOZE_FILE"
+    log "snoozed for ${SNOOZE_SECONDS}s"
+    ;;
+  *)
+    # Log loudly instead of treating a broken dialog as "Later"; that's what hid
+    # the last bug. Short snooze so a persistent failure doesn't notify every minute.
+    log "dialog failed (exit $dialog_status, answer '$answer'): $(tr '\n' ' ' <"$dialog_err")"
+    notify "Login prompt failed. Run aws-bedrock-login --login in a terminal."
+    echo $(( now + ERROR_SNOOZE_SECONDS )) >"$SNOOZE_FILE"
+    ;;
+esac
