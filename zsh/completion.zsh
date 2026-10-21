@@ -3,21 +3,24 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # pasting with tabs doesn't perform completion
 zstyle ':completion:*' insert-tab pending
-if test ! $(which glab); then
-    eval "$(glab completion)"
-fi
+
+# ~/.zshenv (granted's installer) defines `alias assume="source assume"`.
+# Aliases expand at parse time, so this must run at top level, before the
+# `if` block below is parsed, or `assume()` becomes a parse error.
+unalias assume 2>/dev/null
 
 # copied from configfiles repo here: https://gitlab.internal.granular.ag/granular/shared-tooling/configfiles/-/blob/5faf6002bea7f168b58318f5267304873a884dd6/shrcfiles/4-1-aws.sh#L4-15
 if command -v granted &> /dev/null; then
-    # setup the assume command
-    unalias assume &> /dev/null
-    assume_path=$(whence -p assume)
+    # The PATH `assume` is a mise shim (a mise binary), which can't be
+    # sourced; resolve the real script on first use so startup stays fork-free.
+    assume_path=""
 
     # The Bedrock profile must resolve through granted's credential_process.
     # `assume` exports static keys that expire and then outrank the profile in
     # every process started from this shell (OpenCode, Claude Code), so strip
     # them for that profile and restore it after `assume -u`.
     assume() {
+        [[ -n $assume_path ]] || assume_path=$(mise which assume 2>/dev/null || whence -p assume)
         source "$assume_path" "$@"
         local ret=$?
         local bedrock_profile=corteva-workload-dev/AIDeveloperRole
@@ -39,10 +42,3 @@ if command -v granted &> /dev/null; then
 fi
 export GRANTED_ALIAS_CONFIGURED="true"
 
-# if test ! $(which jira); then
-#     eval "$(jira --completion-script-bash)"
-# fi
-
-# if test ! $(which dstask); then
-#     dstask zsh-completion > /usr/local/share/zsh/site-functions/_dstask
-# fi
